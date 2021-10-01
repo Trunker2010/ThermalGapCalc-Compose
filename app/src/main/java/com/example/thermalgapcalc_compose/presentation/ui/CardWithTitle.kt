@@ -11,7 +11,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.thermalgapcalc_compose.ui.theme.ThermalGapCalcComposeTheme
 
 @Composable
 fun CardWithTitle(title: String, content: @Composable () -> Unit) {
@@ -19,7 +21,7 @@ fun CardWithTitle(title: String, content: @Composable () -> Unit) {
         Modifier
             .padding(all = 8.dp)
             .shadow(8.dp)
-            .fillMaxWidth(1f)
+            .fillMaxWidth(),
     ) {
         Column(
             modifier = Modifier
@@ -27,11 +29,19 @@ fun CardWithTitle(title: String, content: @Composable () -> Unit) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = title, Modifier.padding(bottom = 8.dp),
+                text = title, Modifier.padding(vertical = 8.dp),
                 textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.h6
             )
             content()
+        }
+    }
+}
+@Preview(showBackground = true)
+@Composable
+fun DefaultPreview() {
+    ThermalGapCalcComposeTheme {
+        CardWithTitle(title = "text") {
         }
     }
 }

@@ -16,6 +16,7 @@ import com.example.thermalgapcalc_compose.NavigationRoute
 import com.example.thermalgapcalc_compose.presentation.screens.EngineSettingsViewModel
 import com.example.thermalgapcalc_compose.presentation.screens.engineSettings.EngineSettingsCompose
 import com.example.thermalgapcalc_compose.presentation.screens.engineValveScreen.EngineValveScreen
+import com.example.thermalgapcalc_compose.presentation.ui.CardWithTitle
 import com.example.thermalgapcalc_compose.ui.theme.ThermalGapCalcComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -53,5 +54,8 @@ fun NavigationComponent(navController: NavHostController, viewModel: EngineSetti
 @Composable
 fun DefaultPreview() {
     ThermalGapCalcComposeTheme {
+        CardWithTitle(title = "asd") {
+            
+        }
     }
 }
