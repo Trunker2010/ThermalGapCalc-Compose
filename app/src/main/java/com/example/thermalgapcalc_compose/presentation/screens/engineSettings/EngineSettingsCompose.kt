@@ -111,7 +111,7 @@ object EngineSettingsCompose {
                 Text(
                     text = title, modifier = Modifier,
                     textAlign = TextAlign.Center
-                )
+                    )
                 Row(
                     modifier = Modifier
                         .padding(horizontal = 24.dp)
@@ -152,7 +152,7 @@ object EngineSettingsCompose {
                 Text(
                     text = title, Modifier.padding(bottom = 8.dp),
                     textAlign = TextAlign.Center,
-                    style = MaterialTheme.typography.subtitle1
+                    style = MaterialTheme.typography.h6
                 )
                 content()
             }
