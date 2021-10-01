@@ -15,6 +15,7 @@ import androidx.navigation.NavController
 import com.example.thermalgapcalc_compose.NavigationRoute
 import com.example.thermalgapcalc_compose.R
 import com.example.thermalgapcalc_compose.presentation.screens.EngineSettingsViewModel
+import com.example.thermalgapcalc_compose.presentation.ui.CardWithTitle
 
 object EngineSettingsCompose {
     @Composable
@@ -132,29 +133,6 @@ object EngineSettingsCompose {
 
                     }
                 }
-            }
-        }
-    }
-
-    @Composable
-    private fun CardWithTitle(title: String, content: @Composable () -> Unit) {
-        Card(
-            Modifier
-                .padding(all = 8.dp)
-                .shadow(8.dp)
-                .fillMaxWidth(1f)
-        ) {
-            Column(
-                modifier = Modifier
-                    .padding(all = 8.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Text(
-                    text = title, Modifier.padding(bottom = 8.dp),
-                    textAlign = TextAlign.Center,
-                    style = MaterialTheme.typography.h6
-                )
-                content()
             }
         }
     }
