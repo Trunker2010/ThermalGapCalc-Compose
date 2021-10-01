@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">ThermalGapCalc-Compose</string>
+    <string name="cylinders_count">Колличество цилидров:</string>
+    <string name="gaps">Допуски:</string>
+    <string name="in_label">In mm</string>
+    <string name="ex_label">Ex mm</string>
+    <string name="default_zero">0</string>
+    <string name="plus_minus_label">+-</string>
+    <string name="valve_quantity">Колличество клапанов:</string>
+    <string name="input">In</string>
+    <string name="ex">Ex</string>
+    <string name="next">Далее</string>
+</resources>
