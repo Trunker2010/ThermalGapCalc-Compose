@@ -5,9 +5,14 @@
     <string name="in_label">In mm</string>
     <string name="ex_label">Ex mm</string>
     <string name="default_zero">0</string>
-    <string name="plus_minus_label">+-</string>
+    <string name="plus_minus">±</string>
     <string name="valve_quantity">Колличество клапанов:</string>
-    <string name="input">In</string>
-    <string name="ex">Ex</string>
+    <string name="input">IN</string>
+    <string name="ex">EX</string>
     <string name="next">Далее</string>
+    <string name="engine_titile">Двигатель:</string>
+    <string name="in_valve_count">Клапанов IN на цилиндр:</string>
+    <string name="ex_valve_count">Клапанов EX на цилиндр:</string>
+    <string name="in_gaps">Допуски для IN:</string>
+    <string name="ex_gaps">Допуски для EX:</string>
 </resources>
