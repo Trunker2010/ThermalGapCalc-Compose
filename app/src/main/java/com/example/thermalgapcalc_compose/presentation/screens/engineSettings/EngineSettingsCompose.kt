@@ -33,7 +33,6 @@ object EngineSettingsCompose {
                 onValueChangeFinished = {
                     sliderPosition = sliderPosition.roundToInt().toFloat()
                 }
-
             )
         }
     }
@@ -50,10 +49,9 @@ object EngineSettingsCompose {
                         .fillMaxWidth(0.5f)
                 )
                 NumericTextField(
-                    labelRes = R.string.plus_minus_label,
+                    labelRes = R.string.plus_minus,
                     inputParam = viewModel.inGapTolerance
                 )
-
             }
             Row(Modifier.padding(top = 8.dp)) {
                 NumericTextField(
@@ -64,7 +62,7 @@ object EngineSettingsCompose {
                         .fillMaxWidth(0.5f)
                 )
                 NumericTextField(
-                    labelRes = R.string.plus_minus_label,
+                    labelRes = R.string.plus_minus,
                     inputParam = viewModel.exGapTolerance
                 )
             }
@@ -88,7 +86,6 @@ object EngineSettingsCompose {
             label = { Text(text = stringResource(id = labelRes)) },
             value = value,
             onValueChange = { value = it })
-
     }
 
     @Composable
@@ -151,27 +148,6 @@ object EngineSettingsCompose {
     }
 
     @Composable
-    private fun NextButton(navController: NavController) {
-
-        Box(
-            modifier = Modifier
-                .padding(bottom = 8.dp),
-            contentAlignment = Alignment.BottomCenter
-        ) {
-            TextButton(
-                onClick = { navController.navigate(NavigationRoute.VALVE_SETTINGS) },
-                modifier = Modifier
-                    .wrapContentWidth()
-                    .padding(all = 8.dp)
-                    .align(Alignment.BottomEnd)
-            ) {
-                Text(text = stringResource(id = R.string.next))
-            }
-        }
-
-    }
-
-    @Composable
     fun EngineSettingsScreen(navController: NavController, viewModel: EngineSettingsViewModel) {
         val scrollState = rememberScrollState()
         Scaffold(floatingActionButton = {
@@ -181,7 +157,6 @@ object EngineSettingsCompose {
                 modifier = Modifier
                     .verticalScroll(scrollState)
                     .padding(bottom = 80.dp)
-
             ) {
                 EngineSize(viewModel = viewModel)
                 GapsSettings(viewModel = viewModel)
@@ -189,5 +164,4 @@ object EngineSettingsCompose {
             }
         }
     }
-
 }
