@@ -1,15 +1,23 @@
 package com.example.thermalgapcalc_compose.presentation.screens
 
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import com.example.thermalgapcalc_compose.presentation.EngineViewState
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class EngineSettingsViewModel : ViewModel() {
-    val size = mutableStateOf(0f)
-    val inputValveQuantity = mutableStateOf(1)
-    val exValveQuantity = mutableStateOf(1)
-    val inGapNormal = mutableStateOf("0.0")
-    val exGapNormal = mutableStateOf("0.0")
-    val inGapTolerance = mutableStateOf("0.0")
-    val exGapTolerance = mutableStateOf("0.0")
+@HiltViewModel
+class EngineSettingsViewModel @Inject constructor(
+    val engineViewState: EngineViewState
+) : ViewModel() {
+
+
+
+//    var size = mutableStateOf(0f)
+//    val inputValveQuantity = mutableStateOf(1)
+//    val exValveQuantity = mutableStateOf(1)
+//    val inGapNormal = mutableStateOf("0.0")
+//    val exGapNormal = mutableStateOf("0.0")
+//    val inGapTolerance = mutableStateOf("0.0")
+//    val exGapTolerance = mutableStateOf("0.0")
 
 }

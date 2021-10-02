@@ -18,7 +18,9 @@ import com.example.thermalgapcalc_compose.presentation.screens.engineSettings.En
 import com.example.thermalgapcalc_compose.presentation.screens.engineValveScreen.EngineValveScreen
 import com.example.thermalgapcalc_compose.presentation.ui.CardWithTitle
 import com.example.thermalgapcalc_compose.ui.theme.ThermalGapCalcComposeTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         val viewModel by viewModels<EngineSettingsViewModel>()
@@ -42,7 +44,10 @@ fun NavigationComponent(navController: NavHostController, viewModel: EngineSetti
         startDestination = NavigationRoute.ENGINE_SETTINGS
     ) {
         composable(NavigationRoute.ENGINE_SETTINGS) {
-            EngineSettingsCompose.EngineSettingsScreen(navController = navController, viewModel = viewModel)
+            EngineSettingsCompose.EngineSettingsScreen(
+                navController = navController,
+                viewModel = viewModel
+            )
         }
         composable(NavigationRoute.VALVE_SETTINGS) {
             EngineValveScreen(viewModel = viewModel)
@@ -55,7 +60,7 @@ fun NavigationComponent(navController: NavHostController, viewModel: EngineSetti
 fun DefaultPreview() {
     ThermalGapCalcComposeTheme {
         CardWithTitle(title = "asd") {
-            
+
         }
     }
 }
