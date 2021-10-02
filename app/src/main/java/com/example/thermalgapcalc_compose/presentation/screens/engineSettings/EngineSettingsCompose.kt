@@ -1,12 +1,13 @@
 package com.example.thermalgapcalc_compose.presentation.screens.engineSettings
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
@@ -16,18 +17,23 @@ import com.example.thermalgapcalc_compose.NavigationRoute
 import com.example.thermalgapcalc_compose.R
 import com.example.thermalgapcalc_compose.presentation.screens.EngineSettingsViewModel
 import com.example.thermalgapcalc_compose.presentation.ui.CardWithTitle
+import kotlin.math.roundToInt
 
 object EngineSettingsCompose {
     @Composable
     private fun EngineSize(viewModel: EngineSettingsViewModel) {
         var sliderPosition by remember { viewModel.size }
         CardWithTitle(title = stringResource(id = R.string.cylinders_count)) {
-            Text(text = sliderPosition.toInt().toString())
+            Text(text = sliderPosition.roundToInt().toString())
             Slider(
                 value = sliderPosition, steps = 14, valueRange = 1f..16f,
                 onValueChange = {
                     sliderPosition = it
+                },
+                onValueChangeFinished = {
+                    sliderPosition = sliderPosition.roundToInt().toFloat()
                 }
+
             )
         }
     }
@@ -112,7 +118,7 @@ object EngineSettingsCompose {
                 Text(
                     text = title, modifier = Modifier,
                     textAlign = TextAlign.Center
-                    )
+                )
                 Row(
                     modifier = Modifier
                         .padding(horizontal = 24.dp)
@@ -138,10 +144,17 @@ object EngineSettingsCompose {
     }
 
     @Composable
+    private fun NextFAB(navController: NavController) {
+        FloatingActionButton(onClick = { navController.navigate(NavigationRoute.VALVE_SETTINGS) }) {
+            Text(text = stringResource(id = R.string.next))
+        }
+    }
+
+    @Composable
     private fun NextButton(navController: NavController) {
+
         Box(
             modifier = Modifier
-                .fillMaxSize()
                 .padding(bottom = 8.dp),
             contentAlignment = Alignment.BottomCenter
         ) {
@@ -160,13 +173,21 @@ object EngineSettingsCompose {
 
     @Composable
     fun EngineSettingsScreen(navController: NavController, viewModel: EngineSettingsViewModel) {
-        Column(modifier = Modifier.fillMaxHeight()) {
-            Column() {
+        val scrollState = rememberScrollState()
+        Scaffold(floatingActionButton = {
+            NextFAB(navController = navController)
+        }) {
+            Column(
+                modifier = Modifier
+                    .verticalScroll(scrollState)
+                    .padding(bottom = 80.dp)
+
+            ) {
                 EngineSize(viewModel = viewModel)
                 GapsSettings(viewModel = viewModel)
                 ValveSelector(viewModel = viewModel)
             }
-            NextButton(navController = navController)
         }
     }
+
 }
