@@ -22,7 +22,7 @@ import kotlin.math.roundToInt
 object EngineSettingsCompose {
     @Composable
     private fun EngineSize(viewModel: EngineSettingsViewModel) {
-        var sliderPosition by remember { viewModel.size }
+        var sliderPosition by remember { viewModel.engineViewState.getCylinderQuantity() }
         CardWithTitle(title = stringResource(id = R.string.cylinders_count)) {
             Text(text = sliderPosition.roundToInt().toString())
             Slider(
@@ -31,7 +31,9 @@ object EngineSettingsCompose {
                     sliderPosition = it
                 },
                 onValueChangeFinished = {
-                    sliderPosition = sliderPosition.roundToInt().toFloat()
+                    viewModel.engineViewState.setCylinderQuantity(
+                        sliderPosition.roundToInt().toFloat()
+                    )
                 }
             )
         }
@@ -43,27 +45,27 @@ object EngineSettingsCompose {
             Row() {
                 NumericTextField(
                     labelRes = R.string.in_label,
-                    inputParam = viewModel.inGapNormal,
+                    inputParam = viewModel.engineViewState.getInGapNormal(),
                     modifier = Modifier
                         .padding(end = 8.dp)
                         .fillMaxWidth(0.5f)
                 )
                 NumericTextField(
                     labelRes = R.string.plus_minus,
-                    inputParam = viewModel.inGapTolerance
+                    inputParam = viewModel.engineViewState.getInGapTolerance()
                 )
             }
             Row(Modifier.padding(top = 8.dp)) {
                 NumericTextField(
                     labelRes = R.string.ex_label,
-                    inputParam = viewModel.exGapNormal,
+                    inputParam = viewModel.engineViewState.getExGapNormal(),
                     modifier = Modifier
                         .padding(end = 8.dp)
                         .fillMaxWidth(0.5f)
                 )
                 NumericTextField(
                     labelRes = R.string.plus_minus,
-                    inputParam = viewModel.exGapTolerance
+                    inputParam = viewModel.engineViewState.getExGapTolerance()
                 )
             }
         }
@@ -79,7 +81,7 @@ object EngineSettingsCompose {
             inputParam
         }
 
-        TextField(
+        OutlinedTextField(
             modifier = modifier,
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             singleLine = true,
@@ -94,11 +96,11 @@ object EngineSettingsCompose {
             Row() {
                 ValveSizeRadioButtonGroup(
                     title = stringResource(id = R.string.input),
-                    viewModel.inputValveQuantity
+                    viewModel.engineViewState.getInValveQuantity()
                 )
                 ValveSizeRadioButtonGroup(
                     title = stringResource(id = R.string.ex),
-                    viewModel.exValveQuantity
+                    viewModel.engineViewState.getExValveQuantity()
                 )
             }
         }

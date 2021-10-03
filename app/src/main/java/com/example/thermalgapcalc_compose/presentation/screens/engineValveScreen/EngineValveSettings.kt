@@ -23,7 +23,7 @@ fun EngineParamsCard(viewModel: EngineSettingsViewModel) {
     CardWithTitle(title = stringResource(id = R.string.engine_titile)) {
         Row(horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier.fillMaxWidth()) {
             Text(text = "${stringResource(id = R.string.cylinders_count)} ")
-            Text(text = "${viewModel.size.value.toInt()}")
+            Text(text = "${viewModel.engineViewState.getCylinderQuantity().value.toInt()}")
         }
         Spacer(
             modifier = Modifier
@@ -32,11 +32,11 @@ fun EngineParamsCard(viewModel: EngineSettingsViewModel) {
         )
         Row(horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier.fillMaxWidth()) {
             Text(text = "${stringResource(id = R.string.in_valve_count)} ")
-            Text(text = "${viewModel.inputValveQuantity.value}")
+            Text(text = "${viewModel.engineViewState.getInValveQuantity().value}")
         }
         Row(horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier.fillMaxWidth()) {
             Text(text = "${stringResource(id = R.string.in_gaps)} ")
-            Text(text = "${viewModel.inGapNormal.value} ${stringResource(id = R.string.plus_minus)}${viewModel.inGapTolerance.value}")
+            Text(text = "${viewModel.engineViewState.getInGapNormal().value} ${stringResource(id = R.string.plus_minus)}${viewModel.engineViewState.getInGapTolerance().value}")
         }
         Spacer(
             modifier = Modifier
@@ -46,11 +46,11 @@ fun EngineParamsCard(viewModel: EngineSettingsViewModel) {
 
         Row(horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier.fillMaxWidth()) {
             Text(text = "${stringResource(id = R.string.ex_valve_count)} ")
-            Text(text = "${viewModel.exValveQuantity.value}")
+            Text(text = "${viewModel.engineViewState.getExValveQuantity().value}")
         }
         Row(horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier.fillMaxWidth()) {
             Text(text = "${stringResource(id = R.string.ex_gaps)} ")
-            Text(text = "${viewModel.exGapNormal.value} ${stringResource(id = R.string.plus_minus)}${viewModel.exGapTolerance.value}")
+            Text(text = "${viewModel.engineViewState.getExGapNormal().value} ${stringResource(id = R.string.plus_minus)}${viewModel.engineViewState.getExGapTolerance().value}")
         }
     }
 }
