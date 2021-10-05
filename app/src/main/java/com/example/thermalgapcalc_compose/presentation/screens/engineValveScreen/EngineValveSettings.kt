@@ -12,14 +12,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.thermalgapcalc_compose.R
 import com.example.thermalgapcalc_compose.presentation.CylinderState
 import com.example.thermalgapcalc_compose.presentation.CylinderValveMeasurementState
 import com.example.thermalgapcalc_compose.presentation.screens.EngineSettingsViewModel
-import com.example.thermalgapcalc_compose.presentation.ui.CardWithTitle
+import com.example.thermalgapcalc_compose.presentation.ui.CardWithTitle.CardWithTitle
 import com.example.thermalgapcalc_compose.presentation.ui.NumericTextField.NumericTextField
+import com.example.thermalgapcalc_compose.presentation.ui.WasherWithText
 
 object EngineValveCompose {
     @Composable
@@ -143,8 +143,8 @@ object EngineValveCompose {
             modifier = Modifier
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
-
-            ) {
+            verticalAlignment = Alignment.CenterVertically
+        ) {
             Spacer(Modifier.size(8.dp))
             NumericTextField(
                 R.string.gap_label, valveMeasurementState.measurementGapState,
@@ -159,13 +159,15 @@ object EngineValveCompose {
                     .weight(1f)
             )
             Spacer(Modifier.size(8.dp))
+            WasherWithText.CircleText(
+            )
         }
     }
 
     @Composable
     fun CylinderCardsHolder(viewModel: EngineSettingsViewModel) {
         val scrollState = rememberScrollState()
-        Column(Modifier.verticalScroll(scrollState,)) {
+        Column(Modifier.verticalScroll(scrollState)) {
             repeat(viewModel.engineViewState.getCylinderQuantity().value.toInt()) { cylinderNumber ->
                 val cylinderState = viewModel.cylinderStateList[cylinderNumber]
                 CylinderCard(number = cylinderNumber, cylinderState)
