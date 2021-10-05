@@ -15,7 +15,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.thermalgapcalc_compose.NavigationRoute
 import com.example.thermalgapcalc_compose.presentation.screens.EngineSettingsViewModel
 import com.example.thermalgapcalc_compose.presentation.screens.engineSettings.EngineSettingsCompose
-import com.example.thermalgapcalc_compose.presentation.screens.engineValveScreen.EngineValveScreen
+import com.example.thermalgapcalc_compose.presentation.screens.engineValveScreen.EngineValveCompose
 import com.example.thermalgapcalc_compose.presentation.ui.CardWithTitle
 import com.example.thermalgapcalc_compose.ui.theme.ThermalGapCalcComposeTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,7 +29,6 @@ class MainActivity : ComponentActivity() {
             val navController = rememberNavController()
             ThermalGapCalcComposeTheme {
                 Surface(color = MaterialTheme.colors.background) {
-
                     NavigationComponent(navController = navController, viewModel)
                 }
             }
@@ -50,7 +49,7 @@ fun NavigationComponent(navController: NavHostController, viewModel: EngineSetti
             )
         }
         composable(NavigationRoute.VALVE_SETTINGS) {
-            EngineValveScreen(viewModel = viewModel)
+            EngineValveCompose.EngineValveScreen(viewModel = viewModel)
         }
     }
 }
