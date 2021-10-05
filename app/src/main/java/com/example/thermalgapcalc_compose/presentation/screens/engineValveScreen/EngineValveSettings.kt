@@ -7,6 +7,9 @@ import androidx.compose.material.Card
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -19,7 +22,6 @@ import com.example.thermalgapcalc_compose.presentation.CylinderValveMeasurementS
 import com.example.thermalgapcalc_compose.presentation.screens.EngineSettingsViewModel
 import com.example.thermalgapcalc_compose.presentation.ui.CardWithTitle.CardWithTitle
 import com.example.thermalgapcalc_compose.presentation.ui.NumericTextField.NumericTextField
-import com.example.thermalgapcalc_compose.presentation.ui.WasherWithText
 
 object EngineValveCompose {
     @Composable
@@ -138,6 +140,12 @@ object EngineValveCompose {
 
     @Composable
     fun MeasurementFields(valveMeasurementState: CylinderValveMeasurementState) {
+        var measurementGapState by remember {
+            valveMeasurementState.measurementGapState
+        }
+        var measurementWasherState by remember {
+            valveMeasurementState.measurementWasherState
+        }
 
         Row(
             modifier = Modifier
@@ -147,19 +155,22 @@ object EngineValveCompose {
         ) {
             Spacer(Modifier.size(8.dp))
             NumericTextField(
-                R.string.gap_label, valveMeasurementState.measurementGapState,
+                R.string.gap_label,
+                measurementGapState,
                 modifier = Modifier
-                    .weight(1f)
+                    .weight(1f),
+                onParamsChange = {
+                    measurementGapState = it
+                }
+
             )
             Spacer(Modifier.size(8.dp))
             NumericTextField(
                 labelRes = R.string.washer_label,
-                valveMeasurementState.measurementWasherState,
+                measurementWasherState,
                 modifier = Modifier
-                    .weight(1f)
-            )
-            Spacer(Modifier.size(8.dp))
-            WasherWithText.CircleText(
+                    .weight(1f),
+                onParamsChange = { measurementWasherState = it }
             )
         }
     }

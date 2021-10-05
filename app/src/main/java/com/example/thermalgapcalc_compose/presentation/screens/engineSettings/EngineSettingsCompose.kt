@@ -41,30 +41,47 @@ object EngineSettingsCompose {
     @Composable
     private fun GapsSettings(viewModel: EngineSettingsViewModel) {
         CardWithTitle(title = stringResource(id = R.string.gaps)) {
+            var inGapNormal by remember {
+                viewModel.engineViewState.getInGapNormal()
+            }
+            var inGapTolerance by remember {
+                viewModel.engineViewState.getInGapTolerance()
+            }
+            var exGapNormal by remember {
+                viewModel.engineViewState.getExGapNormal()
+            }
+            var exGapTolerance by remember {
+                viewModel.engineViewState.getExGapTolerance()
+            }
+
             Row() {
                 NumericTextField(
                     labelRes = R.string.in_label,
-                    inputParam = viewModel.engineViewState.getInGapNormal(),
+                    inputParam = inGapNormal,
                     modifier = Modifier
                         .padding(end = 8.dp)
-                        .fillMaxWidth(0.5f)
+                        .fillMaxWidth(0.5f),
+                    onParamsChange = {inGapNormal=it}
                 )
                 NumericTextField(
                     labelRes = R.string.plus_minus,
-                    inputParam = viewModel.engineViewState.getInGapTolerance()
+                    inputParam = inGapTolerance,
+                    onParamsChange = {inGapTolerance = it}
                 )
             }
             Row(Modifier.padding(top = 8.dp)) {
                 NumericTextField(
                     labelRes = R.string.ex_label,
-                    inputParam = viewModel.engineViewState.getExGapNormal(),
+                    inputParam = exGapNormal,
                     modifier = Modifier
                         .padding(end = 8.dp)
-                        .fillMaxWidth(0.5f)
+                        .fillMaxWidth(0.5f),
+                    onParamsChange = {exGapNormal=it}
                 )
                 NumericTextField(
                     labelRes = R.string.plus_minus,
-                    inputParam = viewModel.engineViewState.getExGapTolerance()
+                    inputParam = exGapTolerance,
+                    onParamsChange = {exGapTolerance = it}
                 )
             }
         }
