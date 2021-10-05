@@ -17,7 +17,10 @@ import com.example.thermalgapcalc_compose.NavigationRoute
 import com.example.thermalgapcalc_compose.R
 import com.example.thermalgapcalc_compose.presentation.screens.EngineSettingsViewModel
 import com.example.thermalgapcalc_compose.presentation.ui.CardWithTitle
+import com.example.thermalgapcalc_compose.presentation.ui.NumericTextField
+import com.example.thermalgapcalc_compose.presentation.ui.NumericTextField.NumericTextField
 import kotlin.math.roundToInt
+
 
 object EngineSettingsCompose {
     @Composable
@@ -71,24 +74,6 @@ object EngineSettingsCompose {
         }
     }
 
-    @Composable
-    fun NumericTextField(
-        labelRes: Int,
-        inputParam: MutableState<String>,
-        modifier: Modifier = Modifier
-    ) {
-        var value by remember {
-            inputParam
-        }
-
-        OutlinedTextField(
-            modifier = modifier,
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-            singleLine = true,
-            label = { Text(text = stringResource(id = labelRes)) },
-            value = value,
-            onValueChange = { value = it })
-    }
 
     @Composable
     private fun ValveSelector(viewModel: EngineSettingsViewModel) {
@@ -143,8 +128,11 @@ object EngineSettingsCompose {
     }
 
     @Composable
-    private fun NextFAB(navController: NavController) {
-        FloatingActionButton(onClick = { navController.navigate(NavigationRoute.VALVE_SETTINGS) }) {
+    private fun NextFAB(navController: NavController, viewModel: EngineSettingsViewModel) {
+        FloatingActionButton(onClick = {
+            viewModel.initCylindersState()
+            navController.navigate(NavigationRoute.VALVE_SETTINGS)
+        }) {
             Text(text = stringResource(id = R.string.next))
         }
     }
@@ -153,7 +141,7 @@ object EngineSettingsCompose {
     fun EngineSettingsScreen(navController: NavController, viewModel: EngineSettingsViewModel) {
         val scrollState = rememberScrollState()
         Scaffold(floatingActionButton = {
-            NextFAB(navController = navController)
+            NextFAB(navController = navController, viewModel = viewModel)
         }) {
             Column(
                 modifier = Modifier
