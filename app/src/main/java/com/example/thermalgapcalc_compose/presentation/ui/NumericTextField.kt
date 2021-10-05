@@ -8,25 +8,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 
-object NumericTextField{
+object NumericTextField {
     @Composable
     fun NumericTextField(
         labelRes: Int,
-        inputParam: MutableState<String>,
-        modifier: Modifier = Modifier
+        inputParam: String,
+        modifier: Modifier = Modifier,
+        onParamsChange: (String) -> Unit
     ) {
-        var value by remember {
-            inputParam
-        }
-
         OutlinedTextField(
 
             modifier = modifier,
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             singleLine = true,
             label = { Text(text = stringResource(id = labelRes)) },
-            value = value,
-            onValueChange = { value = it })
+            value = inputParam,
+            onValueChange = { onParamsChange(it) })
     }
 }
 

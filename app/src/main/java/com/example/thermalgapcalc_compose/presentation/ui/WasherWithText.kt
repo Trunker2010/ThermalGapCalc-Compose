@@ -6,10 +6,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -25,7 +23,7 @@ object WasherWithText {
     @Composable
     fun CircleText(
         modifier: Modifier = Modifier,
-        text: String = "0.0",
+        text: String,
         background: Color = Color.Black
     ) {
         Box(contentAlignment = Alignment.Center,
@@ -50,6 +48,7 @@ object WasherWithText {
                     }
                 }
         ) {
+
             Text(
                 text = text,
                 textAlign = TextAlign.Center,
@@ -65,5 +64,5 @@ object WasherWithText {
 @Preview
 @Composable
 fun WasherWithTextPrev() {
-    CircleText()
+    CircleText(text = "asd")
 }
