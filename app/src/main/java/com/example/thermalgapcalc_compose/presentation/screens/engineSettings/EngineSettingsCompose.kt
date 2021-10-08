@@ -61,12 +61,12 @@ object EngineSettingsCompose {
                     modifier = Modifier
                         .padding(end = 8.dp)
                         .fillMaxWidth(0.5f),
-                    onParamsChange = {inGapNormal=it}
+                    onParamsChange = { inGapNormal = it }
                 )
                 NumericTextField(
                     labelRes = R.string.plus_minus,
                     inputParam = inGapTolerance,
-                    onParamsChange = {inGapTolerance = it}
+                    onParamsChange = { inGapTolerance = it }
                 )
             }
             Row(Modifier.padding(top = 8.dp)) {
@@ -76,12 +76,12 @@ object EngineSettingsCompose {
                     modifier = Modifier
                         .padding(end = 8.dp)
                         .fillMaxWidth(0.5f),
-                    onParamsChange = {exGapNormal=it}
+                    onParamsChange = { exGapNormal = it }
                 )
                 NumericTextField(
                     labelRes = R.string.plus_minus,
                     inputParam = exGapTolerance,
-                    onParamsChange = {exGapTolerance = it}
+                    onParamsChange = { exGapTolerance = it }
                 )
             }
         }
@@ -141,21 +141,16 @@ object EngineSettingsCompose {
     }
 
     @Composable
-    private fun NextFAB(navController: NavController, viewModel: EngineSettingsViewModel) {
-        FloatingActionButton(onClick = {
-            viewModel.initCylindersState()
-            navController.navigate(NavigationRoute.VALVE_SETTINGS)
-        }) {
-            Text(text = stringResource(id = R.string.next))
-        }
-    }
-
-    @Composable
     fun EngineSettingsScreen(navController: NavController, viewModel: EngineSettingsViewModel) {
         val scrollState = rememberScrollState()
-        Scaffold(floatingActionButton = {
-            NextFAB(navController = navController, viewModel = viewModel)
-        }) {
+        Scaffold(
+            floatingActionButton = {
+                ExtendedFloatingActionButton(onClick = {
+                    viewModel.initCylindersState()
+                    navController.navigate(NavigationRoute.VALVE_SETTINGS)
+                }, text = { Text(text = stringResource(id = R.string.next)) })
+            }
+        ) {
             Column(
                 modifier = Modifier
                     .verticalScroll(scrollState)
