@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.navigation:navigation-common:2.4.0-alpha10@aar">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/../../gradle-2.10/caches/transforms-3/b022c78e6ce681a64caf38382e8a1c5e/transformed/navigation-common-2.4.0-alpha10/res" />
-      <root url="file://$PROJECT_DIR$/../../gradle-2.10/caches/transforms-3/b022c78e6ce681a64caf38382e8a1c5e/transformed/navigation-common-2.4.0-alpha10/AndroidManifest.xml" />
-      <root url="jar://$PROJECT_DIR$/../../gradle-2.10/caches/transforms-3/b022c78e6ce681a64caf38382e8a1c5e/transformed/navigation-common-2.4.0-alpha10/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../gradle-2.10/caches/transforms-3/d4bf3d8262af56c2a538ab2d773685cd/transformed/navigation-common-2.4.0-alpha10/res" />
+      <root url="jar://$PROJECT_DIR$/../../gradle-2.10/caches/transforms-3/d4bf3d8262af56c2a538ab2d773685cd/transformed/navigation-common-2.4.0-alpha10/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../gradle-2.10/caches/transforms-3/d4bf3d8262af56c2a538ab2d773685cd/transformed/navigation-common-2.4.0-alpha10/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
