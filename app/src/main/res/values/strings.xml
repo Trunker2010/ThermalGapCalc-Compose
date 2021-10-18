@@ -17,4 +17,5 @@
     <string name="in_gaps">Допуски для IN:</string>
     <string name="ex_gaps">Допуски для EX:</string>
     <string name="washer_label">Шайба</string>
+    <string name="calculate">Рассчитать</string>
 </resources>

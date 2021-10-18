@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Card
+import androidx.compose.material.ExtendedFloatingActionButton
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -16,6 +17,8 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import com.example.thermalgapcalc_compose.NavigationRoute
 import com.example.thermalgapcalc_compose.R
 import com.example.thermalgapcalc_compose.presentation.CylinderState
 import com.example.thermalgapcalc_compose.presentation.CylinderValveMeasurementState
@@ -23,10 +26,14 @@ import com.example.thermalgapcalc_compose.presentation.screens.EngineSettingsVie
 import com.example.thermalgapcalc_compose.presentation.ui.CardWithTitle.CardWithTitle
 import com.example.thermalgapcalc_compose.presentation.ui.NumericTextField.NumericTextField
 
-object EngineValveCompose {
+object EngineValveScreen {
     @Composable
-    fun EngineValveScreen(viewModel: EngineSettingsViewModel) {
-        Scaffold() {
+    fun EngineValveScreen(viewModel: EngineSettingsViewModel,navController: NavHostController) {
+        Scaffold(floatingActionButton = {
+            ExtendedFloatingActionButton(
+                text = { Text(text = stringResource(id = R.string.calculate)) },
+                onClick = {navController.navigate(NavigationRoute.RESULT)})
+        }) {
             Column() {
                 EngineParamsCard(viewModel = viewModel)
                 CylinderCardsHolder(viewModel = viewModel)
