@@ -16,9 +16,9 @@ import androidx.compose.ui.layout.layout
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.thermalgapcalc_compose.presentation.ui.WasherWithText.CircleText
+import com.example.thermalgapcalc_compose.presentation.ui.SpacerWithText.CircleText
 
-object WasherWithText {
+object SpacerWithText {
 
     @Composable
     fun CircleText(
@@ -63,6 +63,6 @@ object WasherWithText {
 
 @Preview
 @Composable
-fun WasherWithTextPrev() {
+fun SpacerWithTextPrev() {
     CircleText(text = "asd")
 }

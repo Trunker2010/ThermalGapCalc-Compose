@@ -5,8 +5,8 @@ import androidx.compose.runtime.mutableStateOf
 
 class CylinderValveMeasurementState {
     val measurementGapState: MutableState<String> = mutableStateOf("0.0")
-    val measurementWasherState: MutableState<String> = mutableStateOf("0.0")
-    val resultedWasherState: MutableState<String> = mutableStateOf("000")
+    val measurementSpacerState: MutableState<String> = mutableStateOf("0.0")
+    val resultedSpacerState: MutableState<String> = mutableStateOf("000")
 }
 
 class CylinderState(inValveSize: Int, exValveSize: Int) {

@@ -159,8 +159,8 @@ object EngineValveScreen {
         var measurementGapState by remember {
             valveMeasurementState.measurementGapState
         }
-        var measurementWasherState by remember {
-            valveMeasurementState.measurementWasherState
+        var measurementSpacerState by remember {
+            valveMeasurementState.measurementSpacerState
         }
 
         Row(
@@ -181,11 +181,11 @@ object EngineValveScreen {
             )
             Spacer(Modifier.size(8.dp))
             NumericTextField(
-                labelRes = R.string.washer_label,
-                measurementWasherState,
+                labelRes = R.string.spacer_label,
+                measurementSpacerState,
                 modifier = Modifier
                     .weight(1f),
-                onParamsChange = { measurementWasherState = it }
+                onParamsChange = { measurementSpacerState = it }
             )
         }
     }
