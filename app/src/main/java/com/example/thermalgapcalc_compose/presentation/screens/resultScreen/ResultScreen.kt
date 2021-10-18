@@ -1,13 +1,10 @@
 package com.example.thermalgapcalc_compose.presentation.screens.resultScreen
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.thermalgapcalc_compose.presentation.screens.EngineSettingsViewModel
 import com.example.thermalgapcalc_compose.presentation.ui.CardResult
@@ -32,8 +29,7 @@ object ResultScreen {
                     cylinderNumber = cylinderNumber,
                     cylinderState = cylinderState,
                     inNormal = viewModel.engineViewState.getInGapNormal().value.toFloat(),
-                    exNormal = viewModel.engineViewState.getExGapNormal().value.toFloat()
-                )
+                    exNormal = viewModel.engineViewState.getExGapNormal().value.toFloat())
             }
         }
     }
