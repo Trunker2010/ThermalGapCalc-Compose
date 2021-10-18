@@ -29,8 +29,6 @@ proguard/
 # Eclipse Metadata
 .metadata/
 
-# Mac OS X clutter
-*.DS_Store
 
 # Windows clutter
 Thumbs.db
@@ -48,3 +46,4 @@ lint/outputs/
 lint/tmp/
 # lint/reports/
 /.idea/
+.idea/

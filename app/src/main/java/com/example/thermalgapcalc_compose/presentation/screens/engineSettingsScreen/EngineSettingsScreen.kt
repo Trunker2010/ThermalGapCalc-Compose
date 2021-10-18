@@ -1,4 +1,4 @@
-package com.example.thermalgapcalc_compose.presentation.screens.engineSettings
+package com.example.thermalgapcalc_compose.presentation.screens.engineSettingsScreen
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -18,7 +18,7 @@ import com.example.thermalgapcalc_compose.presentation.ui.CardWithTitle.CardWith
 import com.example.thermalgapcalc_compose.presentation.ui.NumericTextField.NumericTextField
 import kotlin.math.roundToInt
 
-object EngineSettingsCompose {
+object EngineSettingsScreen {
     @Composable
     private fun EngineSize(viewModel: EngineSettingsViewModel) {
         var sliderPosition by remember { viewModel.engineViewState.getCylinderQuantity() }
@@ -86,8 +86,6 @@ object EngineSettingsCompose {
             }
         }
     }
-
-
     @Composable
     private fun ValveSelector(viewModel: EngineSettingsViewModel) {
         CardWithTitle(title = stringResource(id = R.string.valve_quantity)) {
