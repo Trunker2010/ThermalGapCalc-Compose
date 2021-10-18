@@ -1,10 +1,13 @@
 package com.example.thermalgapcalc_compose.presentation.screens.resultScreen
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.thermalgapcalc_compose.presentation.screens.EngineSettingsViewModel
 import com.example.thermalgapcalc_compose.presentation.ui.CardResult
@@ -19,7 +22,10 @@ object ResultScreen {
     @Composable
     fun ResultCardHolder(viewModel: EngineSettingsViewModel) {
         val scrollState = rememberScrollState()
-        Column(modifier = Modifier.verticalScroll(scrollState)) {
+        Column(
+            modifier = Modifier
+                .verticalScroll(scrollState)
+        ) {
             repeat(viewModel.engineViewState.getCylinderQuantity().value.toInt()) { cylinderNumber ->
                 val cylinderState = viewModel.cylinderStateList[cylinderNumber]
                 CardResult.CardResult(

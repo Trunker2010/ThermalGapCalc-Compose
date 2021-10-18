@@ -29,11 +29,13 @@ import com.example.thermalgapcalc_compose.presentation.ui.NumericTextField.Numer
 object EngineValveScreen {
     @Composable
     fun EngineValveScreen(viewModel: EngineSettingsViewModel, navController: NavHostController) {
-        Scaffold(floatingActionButton = {
-            ExtendedFloatingActionButton(
-                text = { Text(text = stringResource(id = R.string.calculate)) },
-                onClick = { navController.navigate(NavigationRoute.RESULT) })
-        }) {
+        Scaffold(
+            floatingActionButton = {
+                ExtendedFloatingActionButton(
+                    text = { Text(text = stringResource(id = R.string.calculate)) },
+                    onClick = { navController.navigate(NavigationRoute.RESULT) })
+            },
+        ) {
             Column() {
                 EngineParamsCard(viewModel = viewModel)
                 CylinderCardsHolder(viewModel = viewModel)
@@ -140,7 +142,7 @@ object EngineValveScreen {
                             .fillMaxWidth(),
                         textAlign = TextAlign.Center,
 
-                    )
+                        )
                     repeat(inValveList.size) {
                         MeasurementFields(inValveList[it])
                     }
@@ -191,7 +193,7 @@ object EngineValveScreen {
     @Composable
     fun CylinderCardsHolder(viewModel: EngineSettingsViewModel) {
         val scrollState = rememberScrollState()
-        Column(Modifier.verticalScroll(scrollState)) {
+        Column(Modifier.verticalScroll(scrollState).padding(bottom = 80.dp)) {
             repeat(viewModel.engineViewState.getCylinderQuantity().value.toInt()) { cylinderNumber ->
                 val cylinderState = viewModel.cylinderStateList[cylinderNumber]
                 CylinderCard(number = cylinderNumber, cylinderState)
