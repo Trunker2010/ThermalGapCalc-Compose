@@ -54,21 +54,6 @@ object EngineSettingsScreen {
                 viewModel.engineViewState.getExGapTolerance()
             }
 
-            Row() {
-                NumericTextField(
-                    labelRes = R.string.in_label,
-                    inputParam = inGapNormal,
-                    modifier = Modifier
-                        .padding(end = 8.dp)
-                        .fillMaxWidth(0.5f),
-                    onParamsChange = { inGapNormal = it }
-                )
-                NumericTextField(
-                    labelRes = R.string.plus_minus,
-                    inputParam = inGapTolerance,
-                    onParamsChange = { inGapTolerance = it }
-                )
-            }
             Row(Modifier.padding(top = 8.dp)) {
                 NumericTextField(
                     labelRes = R.string.ex_label,
@@ -82,6 +67,21 @@ object EngineSettingsScreen {
                     labelRes = R.string.plus_minus,
                     inputParam = exGapTolerance,
                     onParamsChange = { exGapTolerance = it }
+                )
+            }
+            Row() {
+                NumericTextField(
+                    labelRes = R.string.in_label,
+                    inputParam = inGapNormal,
+                    modifier = Modifier
+                        .padding(end = 8.dp)
+                        .fillMaxWidth(0.5f),
+                    onParamsChange = { inGapNormal = it }
+                )
+                NumericTextField(
+                    labelRes = R.string.plus_minus,
+                    inputParam = inGapTolerance,
+                    onParamsChange = { inGapTolerance = it }
                 )
             }
         }
