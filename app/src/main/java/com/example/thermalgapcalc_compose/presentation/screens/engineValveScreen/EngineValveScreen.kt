@@ -28,11 +28,11 @@ import com.example.thermalgapcalc_compose.presentation.ui.NumericTextField.Numer
 
 object EngineValveScreen {
     @Composable
-    fun EngineValveScreen(viewModel: EngineSettingsViewModel,navController: NavHostController) {
+    fun EngineValveScreen(viewModel: EngineSettingsViewModel, navController: NavHostController) {
         Scaffold(floatingActionButton = {
             ExtendedFloatingActionButton(
                 text = { Text(text = stringResource(id = R.string.calculate)) },
-                onClick = {navController.navigate(NavigationRoute.RESULT)})
+                onClick = { navController.navigate(NavigationRoute.RESULT) })
         }) {
             Column() {
                 EngineParamsCard(viewModel = viewModel)
@@ -112,27 +112,15 @@ object EngineValveScreen {
                     text = (number + 1).toString(),
                     textAlign = TextAlign.Center,
                 )
-
-                Column(
-                    modifier = Modifier.wrapContentWidth(),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Text(
-                        text = stringResource(id = R.string.input),
-                        textAlign = TextAlign.Center,
-                    )
-                    repeat(inValveList.size) {
-                        MeasurementFields(inValveList[it])
-                    }
-
-                }
                 Column(
                     modifier = Modifier.wrapContentWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
                         text = stringResource(id = R.string.ex),
-                        Modifier.padding(vertical = 8.dp),
+                        Modifier
+                            .padding(vertical = 8.dp)
+                            .fillMaxWidth(),
                         textAlign = TextAlign.Center,
                     )
                     repeat(exValveList.size) {
@@ -140,6 +128,25 @@ object EngineValveScreen {
                     }
 
                 }
+
+                Column(
+                    modifier = Modifier.wrapContentWidth(),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.input),
+                        Modifier
+                            .padding(vertical = 8.dp)
+                            .fillMaxWidth(),
+                        textAlign = TextAlign.Center,
+
+                    )
+                    repeat(inValveList.size) {
+                        MeasurementFields(inValveList[it])
+                    }
+
+                }
+
             }
 
         }
@@ -160,7 +167,6 @@ object EngineValveScreen {
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Spacer(Modifier.size(8.dp))
             NumericTextField(
                 R.string.gap_label,
                 measurementGapState,
