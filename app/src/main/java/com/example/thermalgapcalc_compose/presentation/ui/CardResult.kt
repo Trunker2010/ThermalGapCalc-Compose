@@ -33,9 +33,9 @@ object CardResult {
                         val currentGap =
                             cylinderState.exValveList[it].measurementGapState.value.toFloat()
                         val currentSpacer =
-                            cylinderState.exValveList[it].measurementWasherState.value.toFloat()
+                            cylinderState.exValveList[it].measurementSpacerState.value.toFloat()
 
-                        WasherWithText.CircleText(
+                        SpacerWithText.CircleText(
                             text = CalcUtils.calcSpaсer(currentSpacer, currentGap, exNormal)
                                 .toString(),
                             modifier = Modifier
@@ -57,9 +57,9 @@ object CardResult {
                         val currentGap =
                             cylinderState.inValveList[it].measurementGapState.value.toFloat()
                         val currentSpacer =
-                            cylinderState.inValveList[it].measurementWasherState.value.toFloat()
+                            cylinderState.inValveList[it].measurementSpacerState.value.toFloat()
 
-                        WasherWithText.CircleText(
+                        SpacerWithText.CircleText(
                             text = CalcUtils.calcSpaсer(currentSpacer, currentGap, inNormal)
                                 .toString(),
                             modifier = Modifier
