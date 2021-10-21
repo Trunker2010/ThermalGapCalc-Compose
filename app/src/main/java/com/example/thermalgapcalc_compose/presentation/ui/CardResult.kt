@@ -48,7 +48,9 @@ object CardResult {
             }
         }
 
-        CardWithTitle("Цилиндер  ${(cylinderNumber + 1)}") {
+        val cylinderFormat =
+            String.format(stringResource(id = R.string.cylinder), (cylinderNumber + 1).toString())
+        CardWithTitle(cylinderFormat) {
             Column() {
                 Text(
                     text = stringResource(id = R.string.ex),
@@ -104,13 +106,15 @@ object CardResult {
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
                             SpacerWithText.CircleText(
-                                text = CalcUtils.calcSpacer(currentSpacer, currentGap, inNormal)
+                                text = calcSpacer(currentSpacer, currentGap, inNormal)
                                     .toString(),
                             )
                             val deviation = inCalcGapDeviation(currentGap)
                             val deviationStatusColor =
                                 getDeviationStatusColor(status = inDeviationStatus(deviation))
-                            Text(deviation.toString(), textAlign = TextAlign.Center,color = deviationStatusColor)
+                            Text(deviation.toString(),
+                                textAlign = TextAlign.Center,
+                                color = deviationStatusColor)
                         }
                     }
                 }

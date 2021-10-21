@@ -98,6 +98,8 @@ object EngineValveScreen {
     fun CylinderCard(number: Int, cylinderState: CylinderState) {
         val inValveList = cylinderState.inValveList
         val exValveList = cylinderState.exValveList
+        val cylinderFormat =
+            String.format(stringResource(id = R.string.cylinder), (number + 1).toString())
         Card(
             Modifier
                 .padding(all = 8.dp)
@@ -111,7 +113,7 @@ object EngineValveScreen {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = (number + 1).toString(),
+                    text = (cylinderFormat),
                     textAlign = TextAlign.Center,
                 )
                 Column(
@@ -193,7 +195,9 @@ object EngineValveScreen {
     @Composable
     fun CylinderCardsHolder(viewModel: EngineSettingsViewModel) {
         val scrollState = rememberScrollState()
-        Column(Modifier.verticalScroll(scrollState).padding(bottom = 80.dp)) {
+        Column(Modifier
+            .verticalScroll(scrollState)
+            .padding(bottom = 80.dp)) {
             repeat(viewModel.engineViewState.getCylinderQuantity().value.toInt()) { cylinderNumber ->
                 val cylinderState = viewModel.cylinderStateList[cylinderNumber]
                 CylinderCard(number = cylinderNumber, cylinderState)
