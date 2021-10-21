@@ -13,7 +13,6 @@ object ResultScreen {
     @Composable
     fun ResultScreen(viewModel: EngineSettingsViewModel, navController: NavHostController) {
         ResultCardHolder(viewModel = viewModel)
-
     }
 
     @Composable
@@ -29,7 +28,12 @@ object ResultScreen {
                     cylinderNumber = cylinderNumber,
                     cylinderState = cylinderState,
                     inNormal = viewModel.engineViewState.getInGapNormal().value.toFloat(),
-                    exNormal = viewModel.engineViewState.getExGapNormal().value.toFloat())
+                    exNormal = viewModel.engineViewState.getExGapNormal().value.toFloat(),
+                    inCalcGapDeviation = { inGap -> viewModel.inCalcGapDeviation(inGap) },
+                    exCalcGapDeviation = { exGap -> viewModel.exCalcGapDeviation(exGap) },
+                    inDeviationStatus = { inDeviation -> viewModel.getInValveStatus(inDeviation) },
+                    exDeviationStatus = { exDeviation -> viewModel.getExValveStatus(exDeviation) }
+                )
             }
         }
     }
