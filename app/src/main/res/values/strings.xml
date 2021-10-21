@@ -18,4 +18,5 @@
     <string name="ex_gaps">Допуски для EX:</string>
     <string name="spacer_label">Шайба</string>
     <string name="calculate">Рассчитать</string>
+    <string name="cylinder">Цилиндр №%1$s</string>
 </resources>
