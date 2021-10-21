@@ -8,4 +8,8 @@ object CalcUtils {
 
     fun calcGapDeviation(normalGap: Float, gap: Float) =
         (((gap - normalGap) * 100.0F).roundToInt() / 100.0F)
+
+    fun calcDeviationPercent(gapTolerance: Float, gap: Float) :Float{
+        return (((gap / gapTolerance * 100) * 100.0F).roundToInt() / 100.0F)
+    }
 }
