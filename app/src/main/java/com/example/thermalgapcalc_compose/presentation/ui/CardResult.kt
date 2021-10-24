@@ -8,6 +8,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -15,11 +16,9 @@ import androidx.compose.ui.unit.dp
 import com.example.thermalgapcalc_compose.R
 import com.example.thermalgapcalc_compose.presentation.CylinderState
 import com.example.thermalgapcalc_compose.presentation.ui.CardWithTitle.CardWithTitle
-import com.example.thermalgapcalc_compose.presentation.utils.CalcUtils
-import com.example.thermalgapcalc_compose.presentation.utils.CalcUtils.calcSpacer
-import androidx.compose.ui.graphics.Color
 import com.example.thermalgapcalc_compose.presentation.utils.CalcUtils.DeviationStatuses.GOOD_STATE
 import com.example.thermalgapcalc_compose.presentation.utils.CalcUtils.DeviationStatuses.NORMAL_STATE
+import com.example.thermalgapcalc_compose.presentation.utils.CalcUtils.calcSpacer
 
 object CardResult {
     @Composable

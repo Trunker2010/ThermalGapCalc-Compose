@@ -5,6 +5,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -13,101 +14,104 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.thermalgapcalc_compose.NavigationRoute
 import com.example.thermalgapcalc_compose.R
+import com.example.thermalgapcalc_compose.presentation.EngineViewState
 import com.example.thermalgapcalc_compose.presentation.screens.EngineSettingsViewModel
+import com.example.thermalgapcalc_compose.presentation.screens.model.EngineEvent
 import com.example.thermalgapcalc_compose.presentation.ui.CardWithTitle.CardWithTitle
 import com.example.thermalgapcalc_compose.presentation.ui.NumericTextField.NumericTextField
 import kotlin.math.roundToInt
 
 object EngineSettingsScreen {
     @Composable
-    private fun EngineSize(viewModel: EngineSettingsViewModel) {
-        var sliderPosition by remember { viewModel.engineViewState.getCylinderQuantity() }
+    private fun EngineSize(
+        state: EngineViewState.ViewStateInitial,
+        onSizeChange: (size: Float) -> Unit,
+    ) {
         CardWithTitle(title = stringResource(id = R.string.cylinders_count)) {
-            Text(text = sliderPosition.roundToInt().toString())
+            Text(text = state.cylinderQuantity.roundToInt().toString())
             Slider(
-                value = sliderPosition, steps = 14, valueRange = 1f..16f,
+                value = state.cylinderQuantity, steps = 14, valueRange = 1f..16f,
                 onValueChange = {
-                    sliderPosition = it
+                    onSizeChange(it)
                 },
                 onValueChangeFinished = {
-                    viewModel.engineViewState.setCylinderQuantity(
-                        sliderPosition.roundToInt().toFloat()
-                    )
+                    state.cylinderQuantity.roundToInt().toFloat()
                 }
             )
         }
     }
 
     @Composable
-    private fun GapsSettings(viewModel: EngineSettingsViewModel) {
+    private fun GapsSettings(
+        state: EngineViewState.ViewStateInitial,
+        onExGapNormalChange: (exGapNormal: String) -> Unit,
+        onInGapNormalChange: (inGapNormal: String) -> Unit,
+        onExGapToleranceChange: (exGapTolerance: String) -> Unit,
+        onInGapToleranceChange: (inGapTolerance: String) -> Unit,
+
+        ) {
         CardWithTitle(title = stringResource(id = R.string.gaps)) {
-            var inGapNormal by remember {
-                viewModel.engineViewState.getInGapNormal()
-            }
-            var inGapTolerance by remember {
-                viewModel.engineViewState.getInGapTolerance()
-            }
-            var exGapNormal by remember {
-                viewModel.engineViewState.getExGapNormal()
-            }
-            var exGapTolerance by remember {
-                viewModel.engineViewState.getExGapTolerance()
-            }
+
 
             Row(Modifier.padding(top = 8.dp)) {
                 NumericTextField(
                     labelRes = R.string.ex_label,
-                    inputParam = exGapNormal,
+                    inputParam = state.exGapNormal,
                     modifier = Modifier
                         .padding(end = 8.dp)
                         .fillMaxWidth(0.5f),
-                    onParamsChange = { exGapNormal = it }
+                    onParamsChange = { onExGapNormalChange(it) }
                 )
                 NumericTextField(
                     labelRes = R.string.plus_minus,
-                    inputParam = exGapTolerance,
-                    onParamsChange = { exGapTolerance = it }
+                    inputParam = state.exGapTolerance,
+                    onParamsChange = { onExGapToleranceChange(it) }
                 )
             }
             Row() {
                 NumericTextField(
                     labelRes = R.string.in_label,
-                    inputParam = inGapNormal,
+                    inputParam = state.inGapNormal,
                     modifier = Modifier
                         .padding(end = 8.dp)
                         .fillMaxWidth(0.5f),
-                    onParamsChange = { inGapNormal = it }
+                    onParamsChange = { onInGapNormalChange(it) }
                 )
                 NumericTextField(
                     labelRes = R.string.plus_minus,
-                    inputParam = inGapTolerance,
-                    onParamsChange = { inGapTolerance = it }
+                    inputParam = state.inGapTolerance,
+                    onParamsChange = { onInGapToleranceChange(it) }
                 )
             }
         }
     }
+
     @Composable
-    private fun ValveSelector(viewModel: EngineSettingsViewModel) {
+    private fun ValveSelector(
+        state: EngineViewState.ViewStateInitial,
+        viewModel: EngineSettingsViewModel,
+    ) {
         CardWithTitle(title = stringResource(id = R.string.valve_quantity)) {
             Row() {
                 ValveSizeRadioButtonGroup(
                     title = stringResource(id = R.string.input),
-                    viewModel.engineViewState.getInValveQuantity()
-                )
+                    state.inValveQuantity,
+                ) { viewModel.obtainEvent(EngineEvent.InValveSizeChange(it)) }
                 ValveSizeRadioButtonGroup(
                     title = stringResource(id = R.string.ex),
-                    viewModel.engineViewState.getExValveQuantity()
-                )
+                    state.exValveQuantity
+                ) { viewModel.obtainEvent(EngineEvent.ExValveSizeChange(it)) }
             }
         }
     }
 
     @Composable
-    private fun ValveSizeRadioButtonGroup(title: String, state: MutableState<Int>) {
+    private fun ValveSizeRadioButtonGroup(
+        title: String,
+        state: Int,
+        onValveSizeChange: (Int) -> Unit,
+    ) {
 
-        var selectState by remember {
-            state
-        }
         Box() {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 Text(
@@ -123,14 +127,14 @@ object EngineSettingsScreen {
                         modifier = Modifier.padding(16.dp)
                     ) {
                         Text(text = "1", textAlign = TextAlign.Center)
-                        RadioButton(selected = selectState == 1, onClick = { selectState = 1 })
+                        RadioButton(selected = state == 1, onClick = { onValveSizeChange(1) })
                     }
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
                         modifier = Modifier.padding(16.dp)
                     ) {
                         Text(text = "2", textAlign = TextAlign.Center)
-                        RadioButton(selected = selectState == 2, onClick = { selectState = 2 })
+                        RadioButton(selected = state == 2, onClick = { onValveSizeChange(2) })
 
                     }
                 }
@@ -140,24 +144,45 @@ object EngineSettingsScreen {
 
     @Composable
     fun EngineSettingsScreen(navController: NavController, viewModel: EngineSettingsViewModel) {
+        val viewState =
+            viewModel.engineViewState.observeAsState(initial = EngineViewState.ViewStateInitial())
         val scrollState = rememberScrollState()
-        Scaffold(
-            floatingActionButton = {
-                ExtendedFloatingActionButton(onClick = {
-                    viewModel.initCylindersState()
-                    navController.navigate(NavigationRoute.VALVE_SETTINGS)
-                }, text = { Text(text = stringResource(id = R.string.next)) })
-            }
-        ) {
-            Column(
-                modifier = Modifier
-                    .verticalScroll(scrollState)
-                    .padding(bottom = 80.dp)
-            ) {
-                EngineSize(viewModel = viewModel)
-                GapsSettings(viewModel = viewModel)
-                ValveSelector(viewModel = viewModel)
+        when (val state = viewState.value) {
+            is EngineViewState.ViewStateInitial -> {
+                Scaffold(
+                    floatingActionButton = {
+                        ExtendedFloatingActionButton(onClick = {
+                            navController.navigate(NavigationRoute.VALVE_SETTINGS)
+                        }, text = { Text(text = stringResource(id = R.string.next)) })
+                    }
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .verticalScroll(scrollState)
+                            .padding(bottom = 80.dp)
+                    ) {
+                        EngineSize(
+                            state,
+                        ) { viewModel.obtainEvent(EngineEvent.CylinderSizeQuantityChange(it)) }
+                        GapsSettings(state,
+                            onExGapNormalChange = {
+                                viewModel.obtainEvent(EngineEvent.BaseExGapChange(it))
+                            },
+                            onExGapToleranceChange = {
+                                viewModel.obtainEvent(EngineEvent.ExToleranceChange(it))
+                            },
+                            onInGapNormalChange = {
+                                viewModel.obtainEvent(EngineEvent.BaseInGapChange(it))
+                            },
+                            onInGapToleranceChange = {
+                                viewModel.obtainEvent(EngineEvent.InToleranceChange(it))
+                            }
+                        )
+                        ValveSelector(state, viewModel = viewModel)
+                    }
+                }
             }
         }
+
     }
 }

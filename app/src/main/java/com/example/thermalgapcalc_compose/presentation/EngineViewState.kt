@@ -1,12 +1,9 @@
 package com.example.thermalgapcalc_compose.presentation
 
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
-
 class CylinderValveMeasurementState {
-    val measurementGapState: MutableState<String> = mutableStateOf("0.0")
-    val measurementSpacerState: MutableState<String> = mutableStateOf("0.0")
-    val resultedSpacerState: MutableState<String> = mutableStateOf("000")
+    val measurementGapState: String = "0.0"
+    val measurementSpacerState: String = "0.0"
+    val resultedSpacerState: String = "000"
 }
 
 class CylinderState(inValveSize: Int, exValveSize: Int) {
@@ -23,48 +20,54 @@ class CylinderState(inValveSize: Int, exValveSize: Int) {
     }
 }
 
-data class EngineViewState(
-    private val cylinderQuantity: MutableState<Float> = mutableStateOf(0f),
-    private val inGapNormal: MutableState<String> = mutableStateOf("0.0"),
-    private val inGapTolerance: MutableState<String> = mutableStateOf("0.0"),
-    private val exGapNormal: MutableState<String> = mutableStateOf("0.0"),
-    private val exGapTolerance: MutableState<String> = mutableStateOf("0.0"),
-    private val inValveQuantity: MutableState<Int> = mutableStateOf(1),
-    private val exValveQuantity: MutableState<Int> = mutableStateOf(1),
+sealed class EngineViewState(
+
 ) {
+    data class ViewStateInitial(
+        var cylinderQuantity: Float = 0f,
+        var inGapNormal: String = "0.0",
+        var inGapTolerance: String = "0.0",
+        var exGapNormal: String = "0.0",
+        var exGapTolerance: String = "0.0",
+        var inValveQuantity: Int = 1,
+        var exValveQuantity: Int = 1,
+        val cylinderState: CylinderState = CylinderState(1, 1),
+    ) : EngineViewState()
 
-    fun getCylinderQuantity() = cylinderQuantity
-    fun setCylinderQuantity(cylinderQuantity: Float) {
-        this.cylinderQuantity.value = cylinderQuantity
-    }
 
-    fun getInGapNormal() = inGapNormal
-    fun setInGapNormal(inGapNormal: String) {
-        this.inGapNormal.value = inGapNormal
-    }
-
-    fun getInGapTolerance() = inGapTolerance
-    fun setInGapTolerance(inGapTolerance: String) {
-        this.inGapTolerance.value = inGapTolerance
-    }
-
-    fun getExGapNormal() = exGapNormal
-    fun setExGapNormal(exGapNormal: String) {
-        this.exGapNormal.value = exGapNormal
-    }
-
-    fun getExGapTolerance() = exGapTolerance
-    fun setExGapTolerance(exGapTolerance: String) {
-        this.exGapTolerance.value = exGapTolerance
-    }
-
-    fun getExValveQuantity() = exValveQuantity
-    fun setExValveQuantity(exValveQuantity: Int) {
-        this.exValveQuantity.value = exValveQuantity
-    }
-
-    fun getInValveQuantity() = inValveQuantity
-    fun setInValveQuantity(inValveQuantity: Int) {
-        this.inValveQuantity.value = inValveQuantity
-    }
+//
+//    fun getCylinderQuantity() = cylinderQuantity
+//    fun setCylinderQuantity(cylinderQuantity: Float) {
+//        this.cylinderQuantity = cylinderQuantity
+//    }
+//
+//    fun getInGapNormal() = inGapNormal
+//    fun setInGapNormal(inGapNormal: String) {
+//        this.inGapNormal = inGapNormal
+//    }
+//
+//    fun getInGapTolerance() = inGapTolerance
+//    fun setInGapTolerance(inGapTolerance: String) {
+//        this.inGapTolerance = inGapTolerance
+//    }
+//
+//    fun getExGapNormal() = exGapNormal
+//    fun setExGapNormal(exGapNormal: String) {
+//        this.exGapNormal = exGapNormal
+//    }
+//
+//    fun getExGapTolerance() = exGapTolerance
+//    fun setExGapTolerance(exGapTolerance: String) {
+//        this.exGapTolerance = exGapTolerance
+//    }
+//
+//    fun getExValveQuantity() = exValveQuantity
+//    fun setExValveQuantity(exValveQuantity: Int) {
+//        this.exValveQuantity = exValveQuantity
+//    }
+//
+//    fun getInValveQuantity() = inValveQuantity
+//    fun setInValveQuantity(inValveQuantity: Int) {
+//        this.inValveQuantity = inValveQuantity
+//    }
 }
