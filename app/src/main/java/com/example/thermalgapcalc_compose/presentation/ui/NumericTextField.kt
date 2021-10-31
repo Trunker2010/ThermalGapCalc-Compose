@@ -12,9 +12,9 @@ object NumericTextField {
     @Composable
     fun NumericTextField(
         labelRes: Int,
-        inputParam: String,
+        inputParam: MutableState<String>,
         modifier: Modifier = Modifier,
-        onParamsChange: (String) -> Unit
+        onParamsChange: (MutableState<String>, String) -> Unit,
     ) {
         OutlinedTextField(
 
@@ -22,8 +22,7 @@ object NumericTextField {
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             singleLine = true,
             label = { Text(text = stringResource(id = labelRes)) },
-            value = inputParam,
-            onValueChange = { onParamsChange(it) })
+            value = inputParam.value,
+            onValueChange = { onParamsChange(inputParam, it) })
     }
 }
-

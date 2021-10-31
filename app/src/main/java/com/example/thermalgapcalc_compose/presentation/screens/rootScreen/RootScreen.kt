@@ -19,7 +19,7 @@ object RootScreen {
 
             }
         }){
-            Column() {
+            Column {
                 Text("Список пуст")
             }
         }

@@ -14,11 +14,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.thermalgapcalc_compose.R
-import com.example.thermalgapcalc_compose.presentation.CylinderState
+import com.example.thermalgapcalc_compose.presentation.screens.data.CylinderState
 import com.example.thermalgapcalc_compose.presentation.ui.CardWithTitle.CardWithTitle
 import com.example.thermalgapcalc_compose.presentation.utils.CalcUtils.DeviationStatuses.GOOD_STATE
 import com.example.thermalgapcalc_compose.presentation.utils.CalcUtils.DeviationStatuses.NORMAL_STATE
+import com.example.thermalgapcalc_compose.presentation.utils.CalcUtils.calcGapDeviation
 import com.example.thermalgapcalc_compose.presentation.utils.CalcUtils.calcSpacer
+import com.example.thermalgapcalc_compose.presentation.utils.CalcUtils.getDeviationStatus
 
 object CardResult {
     @Composable
@@ -27,10 +29,8 @@ object CardResult {
         cylinderState: CylinderState,
         inNormal: Float,
         exNormal: Float,
-        inCalcGapDeviation: (currentGap: Float) -> Float,
-        exCalcGapDeviation: (currentGap: Float) -> Float,
-        inDeviationStatus: (gap: Float) -> String,
-        exDeviationStatus: (gap: Float) -> String,
+        exTolerance: Float,
+        inTolerance: Float,
     ) {
         @Composable
         fun getDeviationStatusColor(status: String): Color {
@@ -50,13 +50,13 @@ object CardResult {
         val cylinderFormat =
             String.format(stringResource(id = R.string.cylinder), (cylinderNumber + 1).toString())
         CardWithTitle(cylinderFormat) {
-            Column() {
+            Column {
                 Text(
                     text = stringResource(id = R.string.ex),
                     modifier = Modifier.fillMaxWidth(),
                     textAlign = TextAlign.Center,
                 )
-                Row() {
+                Row {
                     repeat(cylinderState.exValveList.size) {
                         val currentGap =
                             cylinderState.exValveList[it].measurementGapState.value.toFloat()
@@ -73,9 +73,10 @@ object CardResult {
                                 text = calcSpacer(currentSpacer, currentGap, exNormal)
                                     .toString(),
                             )
-                            val deviation = exCalcGapDeviation(currentGap)
+                            val deviation = calcGapDeviation(exNormal, currentGap)
                             val deviationStatusColor =
-                                getDeviationStatusColor(status = exDeviationStatus(deviation))
+                                getDeviationStatusColor(status = getDeviationStatus(exTolerance,
+                                    deviation = deviation))
                             Text(
                                 text = deviation.toString(),
                                 textAlign = TextAlign.Center,
@@ -85,13 +86,13 @@ object CardResult {
                     }
                 }
             }
-            Column() {
+            Column {
                 Text(
                     text = stringResource(id = R.string.input),
                     modifier = Modifier.fillMaxWidth(),
                     textAlign = TextAlign.Center
                 )
-                Row() {
+                Row {
                     repeat(cylinderState.inValveList.size) {
                         val currentGap =
                             cylinderState.inValveList[it].measurementGapState.value.toFloat()
@@ -108,9 +109,9 @@ object CardResult {
                                 text = calcSpacer(currentSpacer, currentGap, inNormal)
                                     .toString(),
                             )
-                            val deviation = inCalcGapDeviation(currentGap)
+                            val deviation = calcGapDeviation(inNormal,currentGap)
                             val deviationStatusColor =
-                                getDeviationStatusColor(status = inDeviationStatus(deviation))
+                                getDeviationStatusColor(status = getDeviationStatus(inTolerance,deviation))
                             Text(deviation.toString(),
                                 textAlign = TextAlign.Center,
                                 color = deviationStatusColor)
