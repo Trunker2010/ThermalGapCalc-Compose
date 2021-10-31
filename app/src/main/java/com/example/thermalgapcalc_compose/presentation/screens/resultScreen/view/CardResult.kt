@@ -1,4 +1,4 @@
-package com.example.thermalgapcalc_compose.presentation.ui
+package com.example.thermalgapcalc_compose.presentation.screens.resultScreen.view
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -22,8 +22,7 @@ import com.example.thermalgapcalc_compose.presentation.utils.CalcUtils.calcGapDe
 import com.example.thermalgapcalc_compose.presentation.utils.CalcUtils.calcSpacer
 import com.example.thermalgapcalc_compose.presentation.utils.CalcUtils.getDeviationStatus
 
-object CardResult {
-    @Composable
+@Composable
     fun CardResult(
         cylinderNumber: Int,
         cylinderState: CylinderState,
@@ -121,4 +120,3 @@ object CardResult {
             }
         }
     }
-}
