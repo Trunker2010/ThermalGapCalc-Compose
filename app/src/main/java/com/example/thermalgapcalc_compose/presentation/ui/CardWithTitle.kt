@@ -15,9 +15,9 @@ import androidx.compose.ui.unit.dp
 
 object CardWithTitle {
     @Composable
-    fun CardWithTitle(title: String, content: @Composable () -> Unit) {
+    fun CardWithTitle(modifier: Modifier= Modifier, title: String, content: @Composable () -> Unit) {
         Card(
-            Modifier
+            modifier
                 .padding(all = 8.dp)
                 .shadow(8.dp)
                 .fillMaxWidth(),
