@@ -1,5 +1,4 @@
-package com.example.thermalgapcalc_compose.presentation.screens.data
-
+package com.example.thermalgapcalc_compose.presentation.data
 
 class CylinderState(inValveSize: Int, exValveSize: Int) {
     val inValveList = mutableListOf<CylinderValveMeasurementState>()

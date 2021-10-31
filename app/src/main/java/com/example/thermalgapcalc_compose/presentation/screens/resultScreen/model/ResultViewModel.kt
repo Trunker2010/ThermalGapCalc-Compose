@@ -2,7 +2,7 @@ package com.example.thermalgapcalc_compose.presentation.screens.resultScreen.mod
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.thermalgapcalc_compose.presentation.screens.data.EngineSettingsConfig
+import com.example.thermalgapcalc_compose.presentation.data.EngineSettingsConfig
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

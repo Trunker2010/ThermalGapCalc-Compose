@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.thermalgapcalc_compose.base.EventHandler
-import com.example.thermalgapcalc_compose.presentation.screens.data.CylinderState
-import com.example.thermalgapcalc_compose.presentation.screens.data.EngineSettingsConfig
+import com.example.thermalgapcalc_compose.presentation.data.CylinderState
+import com.example.thermalgapcalc_compose.presentation.data.EngineSettingsConfig
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

@@ -13,5 +13,4 @@ object ResultScreen {
     ) {
         ResultCardHolder(viewModel = viewModel)
     }
-
 }

@@ -1,4 +1,4 @@
-package com.example.thermalgapcalc_compose.presentation.screens.data
+package com.example.thermalgapcalc_compose.presentation.data
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf

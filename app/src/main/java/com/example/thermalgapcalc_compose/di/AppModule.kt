@@ -1,6 +1,6 @@
 package com.example.thermalgapcalc_compose.di
 
-import com.example.thermalgapcalc_compose.presentation.screens.data.EngineSettingsConfig
+import com.example.thermalgapcalc_compose.presentation.data.EngineSettingsConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
