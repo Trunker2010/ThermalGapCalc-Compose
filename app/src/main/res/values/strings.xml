@@ -11,7 +11,7 @@
     <string name="input">IN</string>
     <string name="ex">EX</string>
     <string name="next">Далее</string>
-    <string name="engine_titile">Двигатель:</string>
+    <string name="engine_title">Двигатель:</string>
     <string name="in_valve_count">Клапанов IN на цилиндр:</string>
     <string name="ex_valve_count">Клапанов EX на цилиндр:</string>
     <string name="in_gaps">Допуски для IN:</string>

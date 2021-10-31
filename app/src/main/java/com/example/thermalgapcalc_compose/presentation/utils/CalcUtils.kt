@@ -9,9 +9,9 @@ import kotlin.math.roundToInt
 object CalcUtils {
 
     object DeviationStatuses {
-        val GOOD_STATE = "good"
-        val NORMAL_STATE = "normal"
-        val BAD_STATE = "bad"
+        const val GOOD_STATE = "good"
+        const val NORMAL_STATE = "normal"
+        const val BAD_STATE = "bad"
     }
 
     fun calcSpacer(currentSpacer: Float, gap: Float, normalGap: Float) =

@@ -31,7 +31,7 @@ object SpacerWithText {
                 .background(background, shape = CircleShape)
                 .shadow(elevation = 4.dp, shape = CircleShape)
                 .border(4.dp, Color.Gray, shape = CircleShape)
-                .layout() { measurable, constraints ->
+                .layout { measurable, constraints ->
                     // Measure the composable
                     val placeable = measurable.measure(constraints)
 
