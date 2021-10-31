@@ -17,7 +17,6 @@ object NumericTextField {
         onParamsChange: (MutableState<String>, String) -> Unit,
     ) {
         OutlinedTextField(
-
             modifier = modifier,
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             singleLine = true,

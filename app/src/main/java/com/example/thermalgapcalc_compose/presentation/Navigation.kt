@@ -1,4 +1,4 @@
-package com.example.thermalgapcalc_compose.presentation.screens
+package com.example.thermalgapcalc_compose.presentation
 
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel

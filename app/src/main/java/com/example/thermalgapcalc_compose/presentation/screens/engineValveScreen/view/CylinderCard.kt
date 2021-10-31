@@ -14,8 +14,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.thermalgapcalc_compose.R
-import com.example.thermalgapcalc_compose.presentation.screens.data.CylinderState
-import com.example.thermalgapcalc_compose.presentation.screens.data.MeasurementFields
+import com.example.thermalgapcalc_compose.presentation.data.CylinderState
+import com.example.thermalgapcalc_compose.presentation.data.MeasurementFields
 import com.example.thermalgapcalc_compose.presentation.screens.engineValveScreen.model.cylinderHolder.CardHolderEvents
 import com.example.thermalgapcalc_compose.presentation.screens.engineValveScreen.model.cylinderHolder.CylinderCardsViewModel
 
