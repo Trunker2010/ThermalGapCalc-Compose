@@ -1,6 +1,6 @@
 package com.example.thermalgapcalc_compose.presentation.data
 
-class CylinderState(inValveSize: Int, exValveSize: Int) {
+data class CylinderState(var inValveSize: Int, var exValveSize: Int) : Cloneable {
     val inValveList = mutableListOf<CylinderValveMeasurementState>()
     val exValveList = mutableListOf<CylinderValveMeasurementState>()
 

@@ -6,5 +6,6 @@ class NavigationRoute {
         const val ENGINE_SETTINGS = "engine_settings"
         const val RESULT = "engine_result"
         const val ROOT = "root_screen"
+        const val ADDING ="adding screen"
     }
 }

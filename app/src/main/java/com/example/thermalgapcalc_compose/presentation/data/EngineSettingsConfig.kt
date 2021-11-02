@@ -11,5 +11,5 @@ data class EngineSettingsConfig(
     var exGapTolerance: MutableState<String> = mutableStateOf("0.0"),
     var inValveQuantity: MutableState<Int> = mutableStateOf(1),
     var exValveQuantity: MutableState<Int> = mutableStateOf(1),
-    var cylindersList: List<CylinderState> = mutableListOf(),
+    var cylindersList: MutableList<CylinderState> = mutableListOf(),
 )
