@@ -8,12 +8,11 @@ import com.example.thermalgapcalc_compose.presentation.screens.resultScreen.mode
 
 @Composable
 fun ResultCardHolder(viewModel: ResultViewModel) {
-
     when (val engineViewState = viewModel.resultState.value) {
         is ResultState.Display -> {
             LazyColumn {
                 itemsIndexed(engineViewState.engineSettingsConfig.cylindersList,
-                    { _, item -> item.hashCode() }) { index, cylinderState ->
+                    ) { index, cylinderState ->
                     CardResult(
                         cylinderNumber = index,
                         cylinderState = cylinderState,

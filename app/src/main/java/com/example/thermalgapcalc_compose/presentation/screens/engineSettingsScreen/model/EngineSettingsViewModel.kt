@@ -3,12 +3,9 @@ package com.example.thermalgapcalc_compose.presentation.screens.engineSettingsSc
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.thermalgapcalc_compose.base.EventHandler
-import com.example.thermalgapcalc_compose.presentation.data.CylinderState
 import com.example.thermalgapcalc_compose.presentation.data.EngineSettingsConfig
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -19,10 +16,10 @@ class EngineSettingsViewModel @Inject constructor(
         MutableLiveData(EngineViewState.ViewStateInitial(engineSettingsConfig))
     val engineViewState: LiveData<EngineViewState> = _engineViewState
 
-    override fun obtainEvent(settingsEvents: EngineSettingsEvents) {
+    override fun obtainEvent(event: EngineSettingsEvents) {
         when (val currentViewState = _engineViewState.value) {
             is EngineViewState.ViewStateInitial -> {
-                reduce(settingsEvents, currentViewState)
+                reduce(event, currentViewState)
             }
         }
     }
@@ -32,9 +29,6 @@ class EngineSettingsViewModel @Inject constructor(
         engineViewState: EngineViewState.ViewStateInitial,
     ) {
         when (settingsEvents) {
-            is EngineSettingsEvents.CylinderSizeQuantityChange -> {
-                settingsEvents.state.value = settingsEvents.size
-            }
             is EngineSettingsEvents.InToleranceChange -> {
                 settingsEvents.state.value = settingsEvents.inTolerance
             }
@@ -54,29 +48,9 @@ class EngineSettingsViewModel @Inject constructor(
             is EngineSettingsEvents.InValveSizeChange -> {
                 settingsEvents.state.value = settingsEvents.inValveSize
             }
-            is EngineSettingsEvents.GenerateCylinderList -> {
-                engineViewState.apply {
-                    viewModelScope.launch {
-                        engineSettingsConfig.cylindersList =
-                            generateCylindersState(engineSettingsConfig.cylinderQuantity.value.toInt(),
-                                engineSettingsConfig.inValveQuantity.value,
-                                engineSettingsConfig.exValveQuantity.value)
-                    }
-                }
+            is EngineSettingsEvents.NextClicked -> {
+                engineViewState.engineSettingsConfig.cylindersList.clear()
             }
-        }
-    }
-
-    private fun generateCylindersState(
-        size: Int,
-        inValveQuantity: Int,
-        exValveQuantity: Int,
-    ): MutableList<CylinderState> {
-        return MutableList(size) {
-            CylinderState(
-                inValveQuantity,
-                exValveQuantity
-            )
         }
     }
 }

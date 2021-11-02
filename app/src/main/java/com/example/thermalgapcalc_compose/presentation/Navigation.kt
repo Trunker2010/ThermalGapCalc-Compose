@@ -6,11 +6,13 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.thermalgapcalc_compose.NavigationRoute
+import com.example.thermalgapcalc_compose.presentation.screens.addingCylinderScreen.AddingCylinderScreen.AddingCylinderScreen
+import com.example.thermalgapcalc_compose.presentation.screens.addingCylinderScreen.AddingCylinderViewModel
 import com.example.thermalgapcalc_compose.presentation.screens.engineSettingsScreen.EngineSettingsScreen
 import com.example.thermalgapcalc_compose.presentation.screens.engineSettingsScreen.model.EngineSettingsViewModel
 import com.example.thermalgapcalc_compose.presentation.screens.engineValveScreen.EngineValveScreen
-import com.example.thermalgapcalc_compose.presentation.screens.engineValveScreen.model.cylinderHolder.CylinderCardsViewModel
 import com.example.thermalgapcalc_compose.presentation.screens.engineValveScreen.model.ParamsCard.ParamsCardViewModel
+import com.example.thermalgapcalc_compose.presentation.screens.engineValveScreen.model.cylinderHolder.CylinderCardsViewModel
 import com.example.thermalgapcalc_compose.presentation.screens.resultScreen.ResultScreen
 import com.example.thermalgapcalc_compose.presentation.screens.resultScreen.model.ResultViewModel
 import com.example.thermalgapcalc_compose.presentation.screens.rootScreen.RootScreen
@@ -50,6 +52,10 @@ object Navigation {
                     viewModel = resultViewModel,
                     navController = navController,
                 )
+            }
+            composable(NavigationRoute.ADDING){
+                val addingViewModel = hiltViewModel<AddingCylinderViewModel>()
+                AddingCylinderScreen(viewModel = addingViewModel)
             }
         }
     }

@@ -28,16 +28,20 @@ object EngineValveScreen {
                 ExtendedFloatingActionButton(
                     text = { Text(text = stringResource(id = R.string.calculate)) },
                     onClick = { navController.navigate(NavigationRoute.RESULT) })
+
             },
         ) {
             val viewState = pramCardsViewModel.cardParamsState.observeAsState()
 
-            Column {
-                when (val state = viewState.value) {
-                    is ParamsCardState.Display -> {
+
+            when (val state = viewState.value) {
+                is ParamsCardState.Display -> {
+
+                    Column {
                         EngineParamsCard(state = state)
-                        CylinderCardsHolder(viewModel = cardsViewModel)
+                        CylinderCardsHolder(viewModel = cardsViewModel, navController)
                     }
+
                 }
             }
         }

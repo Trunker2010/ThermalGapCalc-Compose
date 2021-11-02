@@ -18,7 +18,7 @@ fun EngineParamsCard(state: ParamsCardState.Display) {
             modifier = Modifier.fillMaxWidth()
         ) {
             Text(text = "${stringResource(id = R.string.cylinders_count)} ")
-            Text(text = "${state.engineSettingsConfig.cylinderQuantity.value.toInt()}")
+            Text(text = "${state.engineSettingsConfig.cylindersList.size}")
         }
         Spacer(
             modifier = Modifier

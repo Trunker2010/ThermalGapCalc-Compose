@@ -8,7 +8,6 @@ import androidx.compose.material.ExtendedFloatingActionButton
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -19,7 +18,6 @@ import com.example.thermalgapcalc_compose.R
 import com.example.thermalgapcalc_compose.presentation.screens.engineSettingsScreen.model.EngineSettingsEvents
 import com.example.thermalgapcalc_compose.presentation.screens.engineSettingsScreen.model.EngineSettingsViewModel
 import com.example.thermalgapcalc_compose.presentation.screens.engineSettingsScreen.model.EngineViewState
-import com.example.thermalgapcalc_compose.presentation.screens.engineSettingsScreen.view.EngineSizeSetter
 import com.example.thermalgapcalc_compose.presentation.screens.engineSettingsScreen.view.GapsSettings
 import com.example.thermalgapcalc_compose.presentation.screens.engineSettingsScreen.view.ValveSelector
 
@@ -30,15 +28,13 @@ object EngineSettingsScreen {
 
         val viewState =
             viewModel.engineViewState.observeAsState()
-        LaunchedEffect(key1 = viewState,
-            block = { viewModel.obtainEvent(EngineSettingsEvents.InitialSettings) })
         val scrollState = rememberScrollState()
         when (val state = viewState.value) {
             is EngineViewState.ViewStateInitial -> {
                 Scaffold(
                     floatingActionButton = {
                         ExtendedFloatingActionButton(onClick = {
-                            viewModel.obtainEvent(EngineSettingsEvents.GenerateCylinderList)
+                            viewModel.obtainEvent(EngineSettingsEvents.NextClicked)
                             navController.navigate(NavigationRoute.VALVE_SETTINGS)
                         }, text = { Text(text = stringResource(id = R.string.next)) })
                     }
@@ -48,12 +44,6 @@ object EngineSettingsScreen {
                             .verticalScroll(scrollState)
                             .padding(bottom = 80.dp)
                     ) {
-                        EngineSizeSetter(
-                            state,
-                        ) { state, float ->
-                            viewModel.obtainEvent(EngineSettingsEvents.CylinderSizeQuantityChange(state,
-                                float))
-                        }
                         GapsSettings(state,
                             onExGapNormalChange = { state, str ->
                                 viewModel.obtainEvent(EngineSettingsEvents.BaseExGapChange(state,
