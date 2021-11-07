@@ -18,4 +18,6 @@ sealed class CardHolderEvents {
 
     data class InMeasurementSpacerChange(val state: MutableState<String>,val inSpacer: String) :
         CardHolderEvents()
+
+    object SaveEngineMeasurements:CardHolderEvents()
 }

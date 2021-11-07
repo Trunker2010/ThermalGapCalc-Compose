@@ -17,6 +17,7 @@ import com.example.thermalgapcalc_compose.NavigationRoute
 import com.example.thermalgapcalc_compose.R
 import com.example.thermalgapcalc_compose.presentation.screens.engineValveScreen.model.ParamsCard.ParamsCardState
 import com.example.thermalgapcalc_compose.presentation.screens.engineValveScreen.model.ParamsCard.ParamsCardViewModel
+import com.example.thermalgapcalc_compose.presentation.screens.engineValveScreen.model.cylinderHolder.CardHolderEvents
 import com.example.thermalgapcalc_compose.presentation.screens.engineValveScreen.model.cylinderHolder.CylinderCardsViewModel
 import com.example.thermalgapcalc_compose.presentation.screens.engineValveScreen.view.CylinderCardsHolder
 import com.example.thermalgapcalc_compose.presentation.screens.engineValveScreen.view.EngineParamsCard
@@ -33,7 +34,10 @@ object EngineValveScreen {
             floatingActionButton = {
                 ExtendedFloatingActionButton(
                     text = { Text(text = stringResource(id = R.string.calculate)) },
-                    onClick = { navController.navigate(NavigationRoute.RESULT) })
+                    onClick = {
+                        cardsViewModel.obtainEvent(event = CardHolderEvents.SaveEngineMeasurements)
+                        navController.navigate(NavigationRoute.RESULT)
+                    })
 
             },
         ) {
@@ -46,8 +50,12 @@ object EngineValveScreen {
                         EngineParamsCard(state = state)
                         CylinderCardsHolder(viewModel = cardsViewModel, Modifier.weight(1f))
                         TextButton(modifier = Modifier
-                            .padding(start = 8.dp).padding(vertical = 20.dp),
-                            onClick = { navController.navigate(NavigationRoute.ADDING) }) {
+                            .padding(start = 8.dp)
+                            .padding(vertical = 20.dp),
+                            onClick = {
+                                navController.navigate(NavigationRoute.ADDING)
+                            }) {
+
                             Text(text = stringResource(id = R.string.add_cylinder))
                         }
                     }

@@ -16,6 +16,7 @@ import com.example.thermalgapcalc_compose.presentation.screens.engineValveScreen
 import com.example.thermalgapcalc_compose.presentation.screens.resultScreen.ResultScreen
 import com.example.thermalgapcalc_compose.presentation.screens.resultScreen.model.ResultViewModel
 import com.example.thermalgapcalc_compose.presentation.screens.rootScreen.RootScreen
+import com.example.thermalgapcalc_compose.presentation.screens.rootScreen.model.RootScreenViewModelViewModel
 
 object Navigation {
     @Composable
@@ -26,14 +27,15 @@ object Navigation {
             startDestination = NavigationRoute.ROOT
         ) {
             composable(NavigationRoute.ROOT) {
-                RootScreen.RootScreen(navController = navController)
+                val rootScreenViewModelViewModel = hiltViewModel<RootScreenViewModelViewModel>()
+                RootScreen.RootScreen(navController = navController,rootScreenViewModelViewModel)
             }
 
             composable(NavigationRoute.ENGINE_SETTINGS) {
-                val viewModel = hiltViewModel<EngineSettingsViewModel>()
+                val engineSettingsViewModel = hiltViewModel<EngineSettingsViewModel>()
                 EngineSettingsScreen.EngineSettingsScreen(
                     navController = navController,
-                    viewModel = viewModel
+                    viewModel = engineSettingsViewModel
                 )
             }
             composable(NavigationRoute.VALVE_SETTINGS) {
