@@ -1,12 +1,9 @@
 package com.example.thermalgapcalc_compose.presentation.screens.rootScreen
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material.CircularProgressIndicator
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.livedata.observeAsState
@@ -21,6 +18,7 @@ import com.example.thermalgapcalc_compose.presentation.screens.rootScreen.view.L
 import com.example.thermalgapcalc_compose.presentation.screens.rootScreen.view.SavedMeasurementsHolder
 
 object RootScreen {
+    @RequiresApi(Build.VERSION_CODES.O)
     @Composable
     fun RootScreen(
         navController: NavHostController,
@@ -49,7 +47,6 @@ object RootScreen {
                     ListEmpty(modifier = Modifier)
                 }
             }
-
         }
     }
 }

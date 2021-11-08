@@ -14,7 +14,6 @@ import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 
 
-
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun SavedMeasurementsHolder(modifier: Modifier, list: List<EngineMeasurementModel>) {
@@ -28,9 +27,9 @@ fun SavedMeasurementsHolder(modifier: Modifier, list: List<EngineMeasurementMode
                     val date = LocalDateTime.ofInstant(instant, ZoneId.systemDefault())
                     SavedMeasurementCard(
                         modifier = Modifier,
-                        data =formatter.format(date),
-                        exValveSize = 1,                     //TODO нужно сохранять в таблицу колличество входных/выходных клапанов
-                        inValveSize = 2,
+                        data = formatter.format(date),
+                        exValveSize = it.exValveQuantity,
+                        inValveSize = it.inValveQuantity,
                         exGapNormal = it.exGapNormal.toFloat(),
                         exGapTolerance = it.exGapTolerance.toFloat(),
                         inGapNormal = it.inGapNormal.toFloat(),
@@ -38,7 +37,6 @@ fun SavedMeasurementsHolder(modifier: Modifier, list: List<EngineMeasurementMode
                         IdCylindersListJson = it.IdCylindersList
                     )
                 }
-
             }
         }
     }
