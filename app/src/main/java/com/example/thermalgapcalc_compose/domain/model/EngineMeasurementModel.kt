@@ -7,5 +7,7 @@ data class EngineMeasurementModel(
     val inGapTolerance: String,
     val exGapNormal: String,
     val exGapTolerance: String,
-    val IdCylindersList: String
+    val IdCylindersList: String,
+    val inValveQuantity: Int,
+    val exValveQuantity: Int,
 )

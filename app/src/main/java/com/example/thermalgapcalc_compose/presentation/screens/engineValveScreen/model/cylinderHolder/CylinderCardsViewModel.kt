@@ -46,7 +46,9 @@ class CylinderCardsViewModel @Inject constructor(
                         inGapTolerance = it.inGapTolerance.value,
                         exGapNormal = it.exGapNormal.value,
                         exGapTolerance = it.exGapTolerance.value,
-                        cylindersList = it.cylindersList
+                        cylindersList = it.cylindersList,
+                        inValveQuantity = it.inValveQuantity.value,
+                        exValveQuantity = it.exValveQuantity.value,
                     )
                     saveMeasurements(saveEngineMeasurementParam)
                 }
@@ -57,7 +59,7 @@ class CylinderCardsViewModel @Inject constructor(
 
     private fun saveMeasurements(saveEngineMeasurementParam: SaveEngineMeasurementParam) {
         viewModelScope.launch {
-            withContext(Dispatchers.IO){
+            withContext(Dispatchers.IO) {
                 saveEngineMeasurementUseCase.execute(saveEngineMeasurementParam)
             }
         }
