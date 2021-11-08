@@ -12,5 +12,5 @@ data class SettingsEngineParamsEntity(
     val inGapTolerance: String?,
     val exGapNormal: String?,
     val exGapTolerance: String?,
-    val cylindersListJson: String,
+    val IdCylindersListJson: String,
 )

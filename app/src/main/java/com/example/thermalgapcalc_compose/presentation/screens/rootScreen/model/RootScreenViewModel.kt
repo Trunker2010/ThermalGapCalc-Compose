@@ -1,6 +1,5 @@
 package com.example.thermalgapcalc_compose.presentation.screens.rootScreen.model
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.thermalgapcalc_compose.domain.useCas.GetEngineMeasurementListUseCase
@@ -19,7 +18,6 @@ class RootScreenViewModelViewModel @Inject constructor(
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 val list = getEngineMeasurementListUseCase.execute()
-                Log.d("getList", list[0].cylindersList.toString())
             }
         }
     }
