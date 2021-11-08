@@ -12,6 +12,8 @@ data class SaveEngineMeasurementParam(
     val inGapTolerance: String,
     val exGapNormal: String,
     val exGapTolerance: String,
+    val inValveQuantity: Int,
+    val exValveQuantity: Int,
     val cylindersList: MutableList<CylinderState>,
 )
 
@@ -34,6 +36,8 @@ fun SaveEngineMeasurementParam.toMeasurementEngineEntity(): SettingsEngineParams
         inGapTolerance = this.inGapTolerance,
         exGapNormal = this.exGapNormal,
         exGapTolerance = this.exGapTolerance,
+        inValveQuantity = this.inValveQuantity,
+        exValveQuantity = this.exValveQuantity,
         IdCylindersListJson = UUID.randomUUID().toString()
     )
 }

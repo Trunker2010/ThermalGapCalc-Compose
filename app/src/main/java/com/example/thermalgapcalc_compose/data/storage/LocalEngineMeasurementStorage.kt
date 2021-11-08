@@ -18,11 +18,13 @@ class LocalEngineMeasurementStorage(appDataBase: AppDataBase) :
         entityList.forEach {
             val engineMeasurementModel = EngineMeasurementModel(
                 id = it.id,
-                date = it.date!!.toLong(),
-                inGapNormal = it.inGapNormal!!,
-                inGapTolerance = it.inGapTolerance!!,
-                exGapNormal = it.exGapNormal!!,
-                exGapTolerance = it.exGapTolerance!!,
+                date = it.date,
+                inGapNormal = it.inGapNormal,
+                inGapTolerance = it.inGapTolerance,
+                exGapNormal = it.exGapNormal,
+                exGapTolerance = it.exGapTolerance,
+                inValveQuantity = it.inValveQuantity,
+                exValveQuantity = it.exValveQuantity,
                 IdCylindersList = it.IdCylindersListJson
             )
             modelList.add(engineMeasurementModel)
@@ -34,7 +36,11 @@ class LocalEngineMeasurementStorage(appDataBase: AppDataBase) :
         val measurementParam = saveEngineMeasurementParam.toMeasurementEngineEntity()
         val gsonEngineList = saveEngineMeasurementParam.getGsonEngineList()
         measurementEngineDao.save(measurementParam)
-        cylindersListDao.save(CylindersListEntity(measurementParam.IdCylindersListJson,
-            gsonEngineList))
+        cylindersListDao.save(
+            CylindersListEntity(
+                measurementParam.IdCylindersListJson,
+                gsonEngineList
+            )
+        )
     }
 }
