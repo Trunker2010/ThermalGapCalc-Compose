@@ -25,4 +25,6 @@
     <string name="in_engine_info">IN %1$s±%2$s %3$s %4$s</string>
     <string name="valve">Клапан</string>
     <string name="valve_a">Клапана</string>
+    <string name="listIsEmpty">Список Пуст</string>
+    <string name="loading">Загрузка...</string>
 </resources>
