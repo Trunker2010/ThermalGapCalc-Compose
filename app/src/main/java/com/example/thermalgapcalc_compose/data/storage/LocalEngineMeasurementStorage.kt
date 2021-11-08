@@ -30,11 +30,11 @@ class LocalEngineMeasurementStorage(appDataBase: AppDataBase) :
         return modelList
     }
 
-    override fun save(measurementParam: SaveEngineMeasurementParam) {
-        val saveEngineMeasurementParam = measurementParam.toMeasurementEngineEntity()
-        val gsonEngineList = measurementParam.getGsonEngineList()
-        measurementEngineDao.save(saveEngineMeasurementParam)
-        cylindersListDao.save(CylindersListEntity(saveEngineMeasurementParam.IdCylindersListJson,
+    override fun save(saveEngineMeasurementParam: SaveEngineMeasurementParam) {
+        val measurementParam = saveEngineMeasurementParam.toMeasurementEngineEntity()
+        val gsonEngineList = saveEngineMeasurementParam.getGsonEngineList()
+        measurementEngineDao.save(measurementParam)
+        cylindersListDao.save(CylindersListEntity(measurementParam.IdCylindersListJson,
             gsonEngineList))
     }
 }

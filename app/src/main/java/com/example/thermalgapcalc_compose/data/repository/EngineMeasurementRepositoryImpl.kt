@@ -12,6 +12,6 @@ class EngineMeasurementRepositoryImpl(private val localEngineMeasurementStorage:
     }
 
     override suspend fun saveEngineMeasurement(saveEngineMeasurementParam: SaveEngineMeasurementParam) {
-        localEngineMeasurementStorage.save(saveEngineMeasurementParam)
+        localEngineMeasurementStorage.save(saveEngineMeasurementParam = saveEngineMeasurementParam)
     }
 }
