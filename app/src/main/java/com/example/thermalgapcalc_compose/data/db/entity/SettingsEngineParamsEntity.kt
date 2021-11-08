@@ -7,10 +7,12 @@ import androidx.room.PrimaryKey
 data class SettingsEngineParamsEntity(
     @PrimaryKey
     val id: String,
-    val date: Long?,
-    val inGapNormal: String?,
-    val inGapTolerance: String?,
-    val exGapNormal: String?,
-    val exGapTolerance: String?,
+    val date: Long,
+    val inGapNormal: String,
+    val inGapTolerance: String,
+    val exGapNormal: String,
+    val exGapTolerance: String,
+    val inValveQuantity: Int,
+    val exValveQuantity: Int,
     val IdCylindersListJson: String,
 )
