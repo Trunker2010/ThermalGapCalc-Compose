@@ -21,4 +21,8 @@
     <string name="cylinder">Цилиндр №%1$s</string>
     <string name="add_cylinder">Добавить цилиндр</string>
     <string name="add">Добавить</string>
+    <string name="ex_engine_info">EX %1$s±%2$s %3$s %4$s</string>
+    <string name="in_engine_info">IN %1$s±%2$s %3$s %4$s</string>
+    <string name="valve">Клапан</string>
+    <string name="valve_a">Клапана</string>
 </resources>
