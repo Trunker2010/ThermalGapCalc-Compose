@@ -26,14 +26,6 @@ data class SaveCylinderValveMeasurementState(
 )
 
 fun SaveEngineMeasurementParam.toMeasurementEngineEntity(): SettingsEngineParamsEntity {
-    val gson = Gson()
-    val cylindersMeasurementsList: MutableList<SaveCylindersMeasurements> = mutableListOf()
-
-    this.cylindersList.forEach {
-        val cylindersSaveMeasurements =
-            SaveCylindersMeasurements(it.inValveList.toParam(), it.exValveList.toParam())
-        cylindersMeasurementsList.add(cylindersSaveMeasurements)
-    }
 
     return SettingsEngineParamsEntity(
         id = UUID.randomUUID().toString(),
@@ -42,6 +34,18 @@ fun SaveEngineMeasurementParam.toMeasurementEngineEntity(): SettingsEngineParams
         inGapTolerance = this.inGapTolerance,
         exGapNormal = this.exGapNormal,
         exGapTolerance = this.exGapTolerance,
-        cylindersListJson = gson.toJson(cylindersMeasurementsList)
+        IdCylindersListJson = UUID.randomUUID().toString()
     )
+}
+
+fun SaveEngineMeasurementParam.getGsonEngineList(): String {
+    val gson = Gson()
+    val cylindersMeasurementsList: MutableList<SaveCylindersMeasurements> = mutableListOf()
+
+    this.cylindersList.forEach {
+        val cylindersSaveMeasurements =
+            SaveCylindersMeasurements(it.inValveList.toParam(), it.exValveList.toParam())
+        cylindersMeasurementsList.add(cylindersSaveMeasurements)
+    }
+    return gson.toJson(cylindersMeasurementsList)
 }

@@ -7,5 +7,5 @@ data class EngineMeasurementModel(
     val inGapTolerance: String,
     val exGapNormal: String,
     val exGapTolerance: String,
-    val cylindersList: List<SaveCylindersMeasurements>
+    val IdCylindersList: String
 )
