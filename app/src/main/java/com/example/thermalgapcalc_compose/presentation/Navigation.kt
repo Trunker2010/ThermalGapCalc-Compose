@@ -1,5 +1,8 @@
 package com.example.thermalgapcalc_compose.presentation
 
+import android.os.Build
+import androidx.annotation.RequiresApi
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
@@ -19,6 +22,8 @@ import com.example.thermalgapcalc_compose.presentation.screens.rootScreen.RootSc
 import com.example.thermalgapcalc_compose.presentation.screens.rootScreen.model.RootScreenViewModelViewModel
 
 object Navigation {
+    @ExperimentalFoundationApi
+    @RequiresApi(Build.VERSION_CODES.O)
     @Composable
     fun NavigationComponent(navController: NavHostController) {
 

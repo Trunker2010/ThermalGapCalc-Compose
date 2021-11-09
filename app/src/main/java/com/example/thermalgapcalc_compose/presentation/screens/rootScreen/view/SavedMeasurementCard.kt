@@ -1,10 +1,13 @@
 package com.example.thermalgapcalc_compose.presentation.screens.rootScreen.view
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Card
+import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -13,6 +16,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.thermalgapcalc_compose.R
+import com.example.thermalgapcalc_compose.ui.theme.Shapes
+import com.example.thermalgapcalc_compose.ui.theme.ThermalGapCalcComposeTheme
 
 
 @Composable
@@ -31,7 +36,12 @@ fun SavedMeasurementCard(
         .fillMaxWidth()
         .padding(8.dp)) {
         Column(modifier = Modifier.padding(8.dp)) {
-            Text(text = data, style = MaterialTheme.typography.body2)
+            Box(modifier = Modifier
+                .background(MaterialTheme.colors.secondaryVariant, shape = Shapes.small)
+                .padding(all = 4.dp)){
+                Text(text = data, style = MaterialTheme.typography.body2 )
+            }
+
             val exParams = stringResource(id = R.string.ex_engine_info,
                 formatArgs = arrayOf(
                     exGapNormal,
@@ -47,6 +57,7 @@ fun SavedMeasurementCard(
                     if (inValveSize == 1) stringResource(id = R.string.valve) else stringResource(id = R.string.valve_a),
                 ))
             Text(text = exParams)
+            Divider(Modifier.padding(vertical = 2.dp))
             Text(text = inParams)
         }
     }
@@ -56,12 +67,14 @@ fun SavedMeasurementCard(
 @Composable
 @Preview(showBackground = true)
 fun PreviewSaSavedMeasurementCard() {
-    SavedMeasurementCard(Modifier, "20.07.2021 17:34:52",
-        2,
-        1,
-        0.18f,
-        0.03f,
-        0.15f,
-        0.03f,
-        "0000")
+    ThermalGapCalcComposeTheme(darkTheme = true) {
+        SavedMeasurementCard(Modifier, "20.07.2021 17:34:52",
+            2,
+            1,
+            0.18f,
+            0.03f,
+            0.15f,
+            0.03f,
+            "0000")
+    }
 }
