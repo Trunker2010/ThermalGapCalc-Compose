@@ -2,6 +2,7 @@ package com.example.thermalgapcalc_compose.presentation.screens.rootScreen
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
@@ -18,6 +19,7 @@ import com.example.thermalgapcalc_compose.presentation.screens.rootScreen.view.L
 import com.example.thermalgapcalc_compose.presentation.screens.rootScreen.view.SavedMeasurementsHolder
 
 object RootScreen {
+    @ExperimentalFoundationApi
     @RequiresApi(Build.VERSION_CODES.O)
     @Composable
     fun RootScreen(
