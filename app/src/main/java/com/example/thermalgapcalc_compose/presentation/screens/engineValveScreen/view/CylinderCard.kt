@@ -1,7 +1,9 @@
 package com.example.thermalgapcalc_compose.presentation.screens.engineValveScreen.view
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -26,7 +28,8 @@ fun CylinderCard(
         Modifier
             .padding(all = 8.dp)
             .shadow(8.dp)
-            .fillMaxWidth()
+            .fillMaxWidth(),
+        shape = RoundedCornerShape(18.dp)
     ) {
         Column(
             Modifier
@@ -37,6 +40,7 @@ fun CylinderCard(
             Text(
                 text = (cylinderFormat),
                 textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.h6
             )
             Column(
                 modifier = Modifier
@@ -50,14 +54,18 @@ fun CylinderCard(
                         .fillMaxWidth(),
                     textAlign = TextAlign.Center,
                 )
-                Row(verticalAlignment = Alignment.CenterVertically,
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceAround,
                     modifier = Modifier
-                        .fillMaxWidth()) {
+                        .fillMaxWidth()
+                ) {
                     exValveList.forEach {
-                        MeasurementParams(gap = it.measurementGapState.value,
+                        MeasurementParams(
+                            gap = it.measurementGapState.value,
                             spacer = it.measurementSpacerState.value,
-                            modifier = Modifier.weight(1f))
+                            modifier = Modifier.weight(1f)
+                        )
                     }
                 }
             }
@@ -74,14 +82,18 @@ fun CylinderCard(
                         .fillMaxWidth(),
                     textAlign = TextAlign.Center,
                 )
-                Row(verticalAlignment = Alignment.CenterVertically,
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween,
                     modifier = Modifier
-                        .fillMaxWidth()) {
+                        .fillMaxWidth()
+                ) {
                     inValveList.forEach {
-                        MeasurementParams(gap = it.measurementGapState.value,
+                        MeasurementParams(
+                            gap = it.measurementGapState.value,
                             spacer = it.measurementSpacerState.value,
-                            modifier = Modifier.weight(1f))
+                            modifier = Modifier.weight(1f)
+                        )
                     }
                 }
             }

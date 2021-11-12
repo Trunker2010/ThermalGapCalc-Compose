@@ -1,16 +1,10 @@
 package com.example.thermalgapcalc_compose.presentation.screens.engineValveScreen
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material.ExtendedFloatingActionButton
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
-import androidx.compose.material.TextButton
+import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.thermalgapcalc_compose.NavigationRoute
@@ -21,6 +15,7 @@ import com.example.thermalgapcalc_compose.presentation.screens.engineValveScreen
 import com.example.thermalgapcalc_compose.presentation.screens.engineValveScreen.model.cylinderHolder.CylinderCardsViewModel
 import com.example.thermalgapcalc_compose.presentation.screens.engineValveScreen.view.CylinderCardsHolder
 import com.example.thermalgapcalc_compose.presentation.screens.engineValveScreen.view.EngineParamsCard
+import com.example.thermalgapcalc_compose.presentation.ui.CustomTextButton
 
 object EngineValveScreen {
     @Composable
@@ -29,34 +24,30 @@ object EngineValveScreen {
         cardsViewModel: CylinderCardsViewModel,
         navController: NavHostController,
     ) {
-        Scaffold(
 
-            floatingActionButton = {
-                ExtendedFloatingActionButton(
-                    text = { Text(text = stringResource(id = R.string.calculate)) },
-                    onClick = {
-                        cardsViewModel.obtainEvent(event = CardHolderEvents.SaveEngineMeasurements)
-                        navController.navigate(NavigationRoute.RESULT)
-                    })
+        val viewState = pramCardsViewModel.cardParamsState.observeAsState()
 
-            },
-        ) {
-            val viewState = pramCardsViewModel.cardParamsState.observeAsState()
+        when (val state = viewState.value) {
+            is ParamsCardState.Display -> {
 
-            when (val state = viewState.value) {
-                is ParamsCardState.Display -> {
+                Column(Modifier.fillMaxSize()) {
+                    EngineParamsCard(state = state)
+                    CylinderCardsHolder(viewModel = cardsViewModel, Modifier.weight(1f))
 
-                    Column(Modifier.fillMaxSize()) {
-                        EngineParamsCard(state = state)
-                        CylinderCardsHolder(viewModel = cardsViewModel, Modifier.weight(1f))
-                        TextButton(modifier = Modifier
-                            .padding(start = 8.dp)
-                            .padding(vertical = 20.dp),
-                            onClick = {
-                                navController.navigate(NavigationRoute.ADDING)
-                            }) {
-
-                            Text(text = stringResource(id = R.string.add_cylinder))
+                    Row(
+                        Modifier.fillMaxWidth().padding(8.dp),
+                        verticalAlignment = Alignment.Bottom,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        CustomTextButton(
+                            modifier = Modifier,
+                            textRes = R.string.add_cylinder
+                        ) {
+                            navController.navigate(NavigationRoute.ADDING)
+                        }
+                        CustomTextButton(modifier = Modifier, textRes = R.string.calculate) {
+                            cardsViewModel.obtainEvent(event = CardHolderEvents.SaveEngineMeasurements)
+                            navController.navigate(NavigationRoute.RESULT)
                         }
                     }
                 }

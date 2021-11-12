@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
@@ -16,7 +17,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.thermalgapcalc_compose.R
-import com.example.thermalgapcalc_compose.ui.theme.Shapes
 import com.example.thermalgapcalc_compose.ui.theme.ThermalGapCalcComposeTheme
 
 
@@ -32,30 +32,41 @@ fun SavedMeasurementCard(
     inGapTolerance: Float,
     IdCylindersListJson: String,
 ) {
-    Card(modifier = modifier
-        .fillMaxWidth()
-        .padding(8.dp)) {
+    Card(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(vertical = 2.dp, horizontal = 8.dp), shape = RoundedCornerShape(16.dp)
+    ) {
         Column(modifier = Modifier.padding(8.dp)) {
-            Box(modifier = Modifier
-                .background(MaterialTheme.colors.secondaryVariant, shape = Shapes.small)
-                .padding(all = 4.dp)){
-                Text(text = data, style = MaterialTheme.typography.body2 )
+            Box(
+                modifier = Modifier
+                    .background(
+                        MaterialTheme.colors.secondaryVariant,
+                        shape = RoundedCornerShape(16.dp)
+                    )
+                    .padding(all = 4.dp)
+            ) {
+                Text(modifier=Modifier.padding(horizontal = 2.dp), text = data, style = MaterialTheme.typography.body2)
             }
 
-            val exParams = stringResource(id = R.string.ex_engine_info,
+            val exParams = stringResource(
+                id = R.string.ex_engine_info,
                 formatArgs = arrayOf(
                     exGapNormal,
                     exGapTolerance,
                     exValveSize,
                     if (exValveSize == 1) stringResource(id = R.string.valve) else stringResource(id = R.string.valve_a),
-                ))
-            val inParams = stringResource(id = R.string.in_engine_info,
+                )
+            )
+            val inParams = stringResource(
+                id = R.string.in_engine_info,
                 formatArgs = arrayOf(
                     inGapNormal,
                     inGapTolerance,
                     inValveSize,
                     if (inValveSize == 1) stringResource(id = R.string.valve) else stringResource(id = R.string.valve_a),
-                ))
+                )
+            )
             Text(text = exParams)
             Divider(Modifier.padding(vertical = 2.dp))
             Text(text = inParams)
@@ -68,13 +79,15 @@ fun SavedMeasurementCard(
 @Preview(showBackground = true)
 fun PreviewSaSavedMeasurementCard() {
     ThermalGapCalcComposeTheme(darkTheme = true) {
-        SavedMeasurementCard(Modifier, "20.07.2021 17:34:52",
+        SavedMeasurementCard(
+            Modifier, "20.07.2021 17:34:52",
             2,
             1,
             0.18f,
             0.03f,
             0.15f,
             0.03f,
-            "0000")
+            "0000"
+        )
     }
 }
