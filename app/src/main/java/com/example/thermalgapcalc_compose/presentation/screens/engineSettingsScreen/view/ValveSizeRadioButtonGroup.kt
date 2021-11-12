@@ -1,9 +1,6 @@
 package com.example.thermalgapcalc_compose.presentation.screens.engineSettingsScreen.view
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.RadioButton
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -19,32 +16,31 @@ fun ValveSizeRadioButtonGroup(
     state: MutableState<Int>,
     onValveSizeChange: (MutableState<Int>, Int) -> Unit,
 ) {
-    Box {
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Text(
-                text = title, modifier = Modifier,
-                textAlign = TextAlign.Center
-            )
-            Row(
-                modifier = Modifier
-                    .padding(horizontal = 24.dp)
+
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Text(
+            text = title, modifier = Modifier,
+            textAlign = TextAlign.Center
+        )
+        Row(
+            modifier = Modifier
+                .padding(horizontal = 8.dp)
+        ) {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.padding(8.dp)
             ) {
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.padding(16.dp)
-                ) {
-                    Text(text = "1", textAlign = TextAlign.Center)
-                    RadioButton(selected = state.value == 1,
-                        onClick = { onValveSizeChange(state, 1) })
-                }
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.padding(16.dp)
-                ) {
-                    Text(text = "2", textAlign = TextAlign.Center)
-                    RadioButton(selected = state.value == 2,
-                        onClick = { onValveSizeChange(state, 2) })
-                }
+                Text(text = "1", textAlign = TextAlign.Center)
+                RadioButton(selected = state.value == 1,
+                    onClick = { onValveSizeChange(state, 1) })
+            }
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.padding(8.dp)
+            ) {
+                Text(text = "2", textAlign = TextAlign.Center)
+                RadioButton(selected = state.value == 2,
+                    onClick = { onValveSizeChange(state, 2) })
             }
         }
     }
