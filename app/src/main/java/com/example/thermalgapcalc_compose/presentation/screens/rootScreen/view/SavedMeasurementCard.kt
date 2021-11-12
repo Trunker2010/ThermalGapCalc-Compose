@@ -35,7 +35,8 @@ fun SavedMeasurementCard(
     Card(
         modifier = modifier
             .fillMaxWidth()
-            .padding(vertical = 2.dp, horizontal = 8.dp), shape = RoundedCornerShape(16.dp)
+            .padding(vertical = 2.dp, horizontal = 8.dp), shape = RoundedCornerShape(18.dp),
+        elevation = 4.dp
     ) {
         Column(modifier = Modifier.padding(8.dp)) {
             Box(
@@ -46,7 +47,11 @@ fun SavedMeasurementCard(
                     )
                     .padding(all = 4.dp)
             ) {
-                Text(modifier=Modifier.padding(horizontal = 2.dp), text = data, style = MaterialTheme.typography.body2)
+                Text(
+                    modifier = Modifier.padding(horizontal = 2.dp),
+                    text = data,
+                    style = MaterialTheme.typography.body2
+                )
             }
 
             val exParams = stringResource(
