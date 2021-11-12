@@ -23,7 +23,7 @@ fun EngineParamsCard(state: ParamsCardState.Display) {
         Spacer(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(4.dp)
+                .padding(2.dp)
         )
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
@@ -32,6 +32,11 @@ fun EngineParamsCard(state: ParamsCardState.Display) {
             Text(text = "${stringResource(id = R.string.in_valve_count)} ")
             Text(text = "${state.engineSettingsConfig.inValveQuantity.value}")
         }
+        Spacer(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(2.dp)
+        )
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier.fillMaxWidth()
@@ -42,7 +47,7 @@ fun EngineParamsCard(state: ParamsCardState.Display) {
         Spacer(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(4.dp)
+                .padding(2.dp)
         )
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
@@ -51,6 +56,11 @@ fun EngineParamsCard(state: ParamsCardState.Display) {
             Text(text = "${stringResource(id = R.string.ex_valve_count)} ")
             Text(text = "${state.engineSettingsConfig.exValveQuantity.value}")
         }
+        Spacer(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(2.dp)
+        )
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier.fillMaxWidth()

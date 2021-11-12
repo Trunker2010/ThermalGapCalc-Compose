@@ -25,8 +25,8 @@ class RootScreenViewModelViewModel @Inject constructor(
     fun getList() {
 
         viewModelScope.launch {
+            _rootScreenState.postValue(RootScreenState.Loading)
             withContext(Dispatchers.IO) {
-                _rootScreenState.postValue(RootScreenState.Loading)
                 val list = getEngineMeasurementListUseCase.execute()
                 if (list.isNotEmpty()) {
                     _rootScreenState.postValue(RootScreenState.Display(list))

@@ -4,11 +4,13 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.thermalgapcalc_compose.NavigationRoute
+import com.example.thermalgapcalc_compose.presentation.screens.SettingsScreen
 import com.example.thermalgapcalc_compose.presentation.screens.addingCylinderScreen.AddingCylinderScreen.AddingCylinderScreen
 import com.example.thermalgapcalc_compose.presentation.screens.addingCylinderScreen.AddingCylinderViewModel
 import com.example.thermalgapcalc_compose.presentation.screens.engineSettingsScreen.EngineSettingsScreen
@@ -33,7 +35,7 @@ object Navigation {
         ) {
             composable(NavigationRoute.ROOT) {
                 val rootScreenViewModelViewModel = hiltViewModel<RootScreenViewModelViewModel>()
-                RootScreen.RootScreen(navController = navController,rootScreenViewModelViewModel)
+                RootScreen.RootScreen(navController = navController, rootScreenViewModelViewModel)
             }
 
             composable(NavigationRoute.ENGINE_SETTINGS) {
@@ -60,9 +62,12 @@ object Navigation {
                     navController = navController,
                 )
             }
-            composable(NavigationRoute.ADDING){
+            composable(NavigationRoute.ADDING) {
                 val addingViewModel = hiltViewModel<AddingCylinderViewModel>()
                 AddingCylinderScreen(viewModel = addingViewModel)
+            }
+            composable(NavigationRoute.SETTINGS) {
+                SettingsScreen(modifier = Modifier)
             }
         }
     }

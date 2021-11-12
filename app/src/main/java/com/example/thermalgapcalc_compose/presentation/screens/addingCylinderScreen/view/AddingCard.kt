@@ -1,10 +1,8 @@
 package com.example.thermalgapcalc_compose.presentation.screens.addingCylinderScreen.view
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -31,12 +29,13 @@ fun AddingCylinderCard(
                 Modifier
                     .padding(all = 8.dp)
                     .shadow(8.dp)
-                    .fillMaxWidth()
+                    .fillMaxWidth(),
+                shape = RoundedCornerShape(18.dp),
             ) {
                 Column(
                     Modifier
                         .fillMaxWidth()
-                        .padding(all = 8.dp),
+                        .padding(top = 4.dp, bottom = 8.dp, start = 8.dp, end = 8.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
 
@@ -47,7 +46,6 @@ fun AddingCylinderCard(
                         Text(
                             text = stringResource(id = R.string.ex),
                             Modifier
-                                .padding(vertical = 8.dp)
                                 .fillMaxWidth(),
                             textAlign = TextAlign.Center,
                         )
@@ -56,17 +54,24 @@ fun AddingCylinderCard(
                                 state.cylinderState.exValveList[it].measurementGapState,
                                 state.cylinderState.exValveList[it].measurementSpacerState,
                                 { state, str ->
-                                    viewModel.obtainEvent(AddingCylinderEvents.ExMeasurementGapChange(
-                                        state,
-                                        str))
+                                    viewModel.obtainEvent(
+                                        AddingCylinderEvents.ExMeasurementGapChange(
+                                            state,
+                                            str
+                                        )
+                                    )
                                 },
                                 { state, str ->
-                                    viewModel.obtainEvent(AddingCylinderEvents.ExMeasurementSpacerChange(
-                                        state,
-                                        str))
+                                    viewModel.obtainEvent(
+                                        AddingCylinderEvents.ExMeasurementSpacerChange(
+                                            state,
+                                            str
+                                        )
+                                    )
                                 }
                             )
                         }
+                        Spacer(modifier = Modifier.height(8.dp))
                     }
 
                     Column(
@@ -76,7 +81,6 @@ fun AddingCylinderCard(
                         Text(
                             text = stringResource(id = R.string.input),
                             Modifier
-                                .padding(vertical = 8.dp)
                                 .fillMaxWidth(),
                             textAlign = TextAlign.Center,
 
@@ -86,14 +90,20 @@ fun AddingCylinderCard(
                                 state.cylinderState.inValveList[it].measurementGapState,
                                 state.cylinderState.inValveList[it].measurementSpacerState,
                                 { state, str ->
-                                    viewModel.obtainEvent(AddingCylinderEvents.InMeasurementGapChange(
-                                        state,
-                                        str))
+                                    viewModel.obtainEvent(
+                                        AddingCylinderEvents.InMeasurementGapChange(
+                                            state,
+                                            str
+                                        )
+                                    )
                                 },
                                 { state, str ->
-                                    viewModel.obtainEvent(AddingCylinderEvents.InMeasurementSpacerChange(
-                                        state,
-                                        str))
+                                    viewModel.obtainEvent(
+                                        AddingCylinderEvents.InMeasurementSpacerChange(
+                                            state,
+                                            str
+                                        )
+                                    )
                                 }
                             )
                         }
@@ -108,6 +118,6 @@ fun AddingCylinderCard(
 @SuppressLint("UnrememberedMutableState")
 @Composable
 @Preview(showBackground = true)
-fun PreviewAddingCylinderCard(){
+fun PreviewAddingCylinderCard() {
     AddingCylinderCard(viewModel = AddingCylinderViewModel(EngineSettingsConfig()))
 }
