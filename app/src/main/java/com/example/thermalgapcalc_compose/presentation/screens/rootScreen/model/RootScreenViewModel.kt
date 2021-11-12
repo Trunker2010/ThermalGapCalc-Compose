@@ -5,11 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.thermalgapcalc_compose.base.EventHandler
-import com.example.thermalgapcalc_compose.domain.model.EngineMeasurementModel
 import com.example.thermalgapcalc_compose.domain.useCas.GetEngineMeasurementListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -62,7 +60,7 @@ class RootScreenViewModelViewModel @Inject constructor(
         }
     }
 
-    fun reduce(display: RootScreenState.Init, rootScreenEvent: RootScreenEvent) {
+    private fun reduce(display: RootScreenState.Init, rootScreenEvent: RootScreenEvent) {
         when (rootScreenEvent) {
             is RootScreenEvent.LoadMeasurementList -> {
                 getList()
@@ -81,5 +79,4 @@ class RootScreenViewModelViewModel @Inject constructor(
             }
         }
     }
-
 }
