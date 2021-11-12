@@ -28,9 +28,9 @@ fun AddingCylinderCard(
             Card(
                 Modifier
                     .padding(all = 8.dp)
-                    .shadow(8.dp)
                     .fillMaxWidth(),
                 shape = RoundedCornerShape(18.dp),
+                elevation = 4.dp
             ) {
                 Column(
                     Modifier
