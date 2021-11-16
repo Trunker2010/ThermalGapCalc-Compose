@@ -6,9 +6,9 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
-import com.example.thermalgapcalc_compose.NavigationRoute
+import androidx.navigation.NavController
 import com.example.thermalgapcalc_compose.R
+import com.example.thermalgapcalc_compose.presentation.navigation.NavigationRoute
 import com.example.thermalgapcalc_compose.presentation.screens.engineValveScreen.model.ParamsCard.ParamsCardState
 import com.example.thermalgapcalc_compose.presentation.screens.engineValveScreen.model.ParamsCard.ParamsCardViewModel
 import com.example.thermalgapcalc_compose.presentation.screens.engineValveScreen.model.cylinderHolder.CardHolderEvents
@@ -22,7 +22,7 @@ object EngineValveScreen {
     fun EngineValveScreen(
         pramCardsViewModel: ParamsCardViewModel,
         cardsViewModel: CylinderCardsViewModel,
-        navController: NavHostController,
+        navController: NavController,
     ) {
 
         val viewState = pramCardsViewModel.cardParamsState.observeAsState()
