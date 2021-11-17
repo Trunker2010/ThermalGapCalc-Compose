@@ -20,7 +20,7 @@ class RootScreenViewModelViewModel @Inject constructor(
         MutableLiveData<RootScreenState>(RootScreenState.Init)
     val rootScreenState: LiveData<RootScreenState> = _rootScreenState
 
-    fun getList() {
+    private fun getList() {
 
         viewModelScope.launch {
             _rootScreenState.postValue(RootScreenState.Loading)

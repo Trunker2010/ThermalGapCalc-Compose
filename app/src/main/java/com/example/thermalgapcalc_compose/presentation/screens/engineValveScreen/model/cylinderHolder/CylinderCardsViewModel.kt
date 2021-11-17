@@ -17,7 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class CylinderCardsViewModel @Inject constructor(
     engineSettingsConfig: EngineSettingsConfig,
-    val saveEngineMeasurementUseCase: SaveEngineMeasurementUseCase,
+    private val saveEngineMeasurementUseCase: SaveEngineMeasurementUseCase,
 ) :
     ViewModel(), EventHandler<CardHolderEvents> {
     private val _cardHolderViewState: MutableLiveData<CylinderHolderState> =

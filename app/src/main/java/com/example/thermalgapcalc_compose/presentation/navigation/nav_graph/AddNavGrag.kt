@@ -5,7 +5,8 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.example.thermalgapcalc_compose.presentation.navigation.NavigationRoute
+import com.example.thermalgapcalc_compose.presentation.navigation.ADD_ROUTE
+import com.example.thermalgapcalc_compose.presentation.navigation.Screen
 import com.example.thermalgapcalc_compose.presentation.screens.addingCylinderScreen.AddingCylinderScreen
 import com.example.thermalgapcalc_compose.presentation.screens.addingCylinderScreen.AddingCylinderViewModel
 import com.example.thermalgapcalc_compose.presentation.screens.engineSettingsScreen.EngineSettingsScreen
@@ -18,17 +19,17 @@ import com.example.thermalgapcalc_compose.presentation.screens.resultScreen.mode
 
 fun NavGraphBuilder.addNavGraph(navController: NavHostController) {
     navigation(
-        startDestination = NavigationRoute.ENGINE_SETTINGS,
-        route = NavigationRoute.ADD_ROUTE
+        startDestination = Screen.EngineSettings.route,
+        route = ADD_ROUTE
     ) {
-        composable(route= NavigationRoute.ENGINE_SETTINGS) {
+        composable(route = Screen.EngineSettings.route) {
             val engineSettingsViewModel = hiltViewModel<EngineSettingsViewModel>()
             EngineSettingsScreen.EngineSettingsScreen(
                 navController = navController,
                 viewModel = engineSettingsViewModel
             )
         }
-        composable(route=NavigationRoute.VALVE_SETTINGS) {
+        composable(route = Screen.ValveSettings.route) {
             val cylinderCardsViewModel = hiltViewModel<CylinderCardsViewModel>()
             val paramsCardViewModel = hiltViewModel<ParamsCardViewModel>()
             EngineValveScreen.EngineValveScreen(
@@ -37,17 +38,17 @@ fun NavGraphBuilder.addNavGraph(navController: NavHostController) {
                 cardsViewModel = cylinderCardsViewModel
             )
         }
+        composable(route = Screen.AddingMeasurementsCylinder.route) {
+            val addingViewModel = hiltViewModel<AddingCylinderViewModel>()
+            AddingCylinderScreen.AddingCylinderScreen(viewModel = addingViewModel)
+        }
 
-        composable(route=NavigationRoute.RESULT) {
+        composable(route = Screen.MeasurementResult.route) {
             val resultViewModel = hiltViewModel<ResultViewModel>()
             ResultScreen.ResultScreen(
                 viewModel = resultViewModel,
                 navController = navController,
             )
-        }
-        composable(route=NavigationRoute.ADDING) {
-            val addingViewModel = hiltViewModel<AddingCylinderViewModel>()
-            AddingCylinderScreen.AddingCylinderScreen(viewModel = addingViewModel)
         }
     }
 }

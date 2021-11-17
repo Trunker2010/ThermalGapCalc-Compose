@@ -43,7 +43,7 @@ fun SavedMeasurementsHolder(modifier: Modifier, list: List<EngineMeasurementMode
                                 MaterialTheme.colors.surface
                             )
                     ) {
-                        Column() {
+                        Column {
                             Text(modifier = Modifier
                                 .padding(start = 12.dp, end = 8.dp, top = 4.dp, bottom = 4.dp)
                                 .padding(start = 4.dp), text = initial)

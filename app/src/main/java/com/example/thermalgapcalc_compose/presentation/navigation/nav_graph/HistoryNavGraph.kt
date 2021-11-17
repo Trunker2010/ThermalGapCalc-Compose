@@ -8,7 +8,8 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.example.thermalgapcalc_compose.presentation.navigation.NavigationRoute
+import com.example.thermalgapcalc_compose.presentation.navigation.HISTORY_ROUTE
+import com.example.thermalgapcalc_compose.presentation.navigation.Screen
 import com.example.thermalgapcalc_compose.presentation.screens.rootScreen.RootScreen
 import com.example.thermalgapcalc_compose.presentation.screens.rootScreen.model.RootScreenViewModelViewModel
 
@@ -16,11 +17,11 @@ import com.example.thermalgapcalc_compose.presentation.screens.rootScreen.model.
 @RequiresApi(Build.VERSION_CODES.O)
 fun NavGraphBuilder.historyNavGraph(navController: NavHostController) {
     navigation(
-        startDestination = NavigationRoute.ROOT,
-        route = NavigationRoute.HISTORY_ROUTE
+        startDestination = Screen.History.route,
+        route = HISTORY_ROUTE
     ) {
 
-        composable(route = NavigationRoute.ROOT) {
+        composable(route = Screen.History.route) {
             val rootScreenViewModelViewModel = hiltViewModel<RootScreenViewModelViewModel>()
             RootScreen.RootScreen(navController = navController, rootScreenViewModelViewModel)
         }

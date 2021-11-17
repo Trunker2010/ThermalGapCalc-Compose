@@ -9,8 +9,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.thermalgapcalc_compose.presentation.navigation.NavigationRoute
 import com.example.thermalgapcalc_compose.R
+import com.example.thermalgapcalc_compose.presentation.navigation.Screen
 import com.example.thermalgapcalc_compose.presentation.screens.engineSettingsScreen.model.EngineSettingsEvents
 import com.example.thermalgapcalc_compose.presentation.screens.engineSettingsScreen.model.EngineSettingsViewModel
 import com.example.thermalgapcalc_compose.presentation.screens.engineSettingsScreen.model.EngineViewState
@@ -80,7 +80,7 @@ object EngineSettingsScreen {
                 ) {
                     CustomTextButton(modifier = Modifier, textRes = R.string.next, onClick = {
                         viewModel.obtainEvent(EngineSettingsEvents.NextClicked)
-                        navController.navigate(NavigationRoute.VALVE_SETTINGS)
+                        navController.navigate(Screen.ValveSettings.route)
                     })
                 }
             }

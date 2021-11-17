@@ -17,8 +17,8 @@ object Navigation {
     fun NavigationComponent(navController: NavHostController) {
         NavHost(
             navController = navController,
-            startDestination = NavigationRoute.HISTORY_ROUTE,
-            route = NavigationRoute.ROOT_GRAPH_ROUTE
+            startDestination = HISTORY_ROUTE,
+            route = ROOT_GRAPH_ROUTE
         ) {
             historyNavGraph(navController = navController)
             addNavGraph(navController = navController)
