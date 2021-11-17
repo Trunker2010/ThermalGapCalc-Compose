@@ -1,8 +1,6 @@
 package com.example.thermalgapcalc_compose.presentation.screens.engineSettingsScreen.view
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Arrangement.Center
-import androidx.compose.foundation.layout.Arrangement.SpaceBetween
 import androidx.compose.foundation.layout.Row
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource

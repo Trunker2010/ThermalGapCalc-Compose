@@ -8,7 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.thermalgapcalc_compose.R
-import com.example.thermalgapcalc_compose.presentation.navigation.NavigationRoute
+import com.example.thermalgapcalc_compose.presentation.navigation.Screen
 import com.example.thermalgapcalc_compose.presentation.screens.engineValveScreen.model.ParamsCard.ParamsCardState
 import com.example.thermalgapcalc_compose.presentation.screens.engineValveScreen.model.ParamsCard.ParamsCardViewModel
 import com.example.thermalgapcalc_compose.presentation.screens.engineValveScreen.model.cylinderHolder.CardHolderEvents
@@ -35,7 +35,9 @@ object EngineValveScreen {
                     CylinderCardsHolder(viewModel = cardsViewModel, Modifier.weight(1f))
 
                     Row(
-                        Modifier.fillMaxWidth().padding(8.dp),
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(8.dp),
                         verticalAlignment = Alignment.Bottom,
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
@@ -43,11 +45,11 @@ object EngineValveScreen {
                             modifier = Modifier,
                             textRes = R.string.add_cylinder
                         ) {
-                            navController.navigate(NavigationRoute.ADDING)
+                            navController.navigate(Screen.AddingMeasurementsCylinder.route)
                         }
                         CustomTextButton(modifier = Modifier, textRes = R.string.calculate) {
                             cardsViewModel.obtainEvent(event = CardHolderEvents.SaveEngineMeasurements)
-                            navController.navigate(NavigationRoute.RESULT)
+                            navController.navigate(Screen.MeasurementResult.route)
                         }
                     }
                 }
