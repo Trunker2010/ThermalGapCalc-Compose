@@ -40,7 +40,7 @@ fun NavGraphBuilder.addNavGraph(navController: NavHostController) {
         }
         composable(route = Screen.AddingMeasurementsCylinder.route) {
             val addingViewModel = hiltViewModel<AddingCylinderViewModel>()
-            AddingCylinderScreen.AddingCylinderScreen(viewModel = addingViewModel)
+            AddingCylinderScreen.AddingCylinderScreen(viewModel = addingViewModel, navController)
         }
 
         composable(route = Screen.MeasurementResult.route) {

@@ -1,5 +1,6 @@
 package com.example.thermalgapcalc_compose.presentation.data
 
+import androidx.compose.runtime.mutableStateOf
 import com.example.thermalgapcalc_compose.domain.model.SaveCylinderValveMeasurementState
 
 data class CylinderState(var inValveSize: Int, var exValveSize: Int) {
@@ -8,15 +9,13 @@ data class CylinderState(var inValveSize: Int, var exValveSize: Int) {
 
     init {
         do {
-            inValveList.add(CylinderValveMeasurementState())
+            inValveList.add(CylinderValveMeasurementState(mutableStateOf("0"),mutableStateOf("0")))
         } while (inValveSize != inValveList.size)
         do {
-            exValveList.add(CylinderValveMeasurementState())
+            exValveList.add(CylinderValveMeasurementState(mutableStateOf("0"),mutableStateOf("0")))
         } while (exValveSize != exValveList.size)
     }
 }
-
-
 
 fun MutableList<CylinderValveMeasurementState>.toParam(): MutableList<SaveCylinderValveMeasurementState> {
     val list = mutableListOf<SaveCylinderValveMeasurementState>()

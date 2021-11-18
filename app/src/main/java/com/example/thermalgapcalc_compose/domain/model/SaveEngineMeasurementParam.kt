@@ -30,7 +30,7 @@ data class SaveCylinderValveMeasurementState(
 )
 
 fun SaveCylinderValveMeasurementState.toCylinderValveMeasurementState(): CylinderValveMeasurementState {
-    val cylinderValveMeasurementState = CylinderValveMeasurementState()
+    val cylinderValveMeasurementState = CylinderValveMeasurementState(mutableStateOf("0"),mutableStateOf("0"))
     cylinderValveMeasurementState.measurementGapState = mutableStateOf(this.measurementGapState)
     cylinderValveMeasurementState.measurementSpacerState =
         mutableStateOf(this.measurementSpacerState)
