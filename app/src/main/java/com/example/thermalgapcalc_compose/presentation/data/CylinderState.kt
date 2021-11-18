@@ -3,8 +3,8 @@ package com.example.thermalgapcalc_compose.presentation.data
 import com.example.thermalgapcalc_compose.domain.model.SaveCylinderValveMeasurementState
 
 data class CylinderState(var inValveSize: Int, var exValveSize: Int) {
-    val inValveList = mutableListOf<CylinderValveMeasurementState>()
-    val exValveList = mutableListOf<CylinderValveMeasurementState>()
+    var inValveList = mutableListOf<CylinderValveMeasurementState>()
+    var exValveList = mutableListOf<CylinderValveMeasurementState>()
 
     init {
         do {
@@ -15,6 +15,8 @@ data class CylinderState(var inValveSize: Int, var exValveSize: Int) {
         } while (exValveSize != exValveList.size)
     }
 }
+
+
 
 fun MutableList<CylinderValveMeasurementState>.toParam(): MutableList<SaveCylinderValveMeasurementState> {
     val list = mutableListOf<SaveCylinderValveMeasurementState>()

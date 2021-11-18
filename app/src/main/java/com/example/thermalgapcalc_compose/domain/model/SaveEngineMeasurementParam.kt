@@ -1,7 +1,9 @@
 package com.example.thermalgapcalc_compose.domain.model
 
+import androidx.compose.runtime.mutableStateOf
 import com.example.thermalgapcalc_compose.data.db.entity.SettingsEngineParamsEntity
 import com.example.thermalgapcalc_compose.presentation.data.CylinderState
+import com.example.thermalgapcalc_compose.presentation.data.CylinderValveMeasurementState
 import com.example.thermalgapcalc_compose.presentation.data.toParam
 import com.google.gson.Gson
 import java.util.*
@@ -26,6 +28,14 @@ data class SaveCylinderValveMeasurementState(
     val measurementGapState: String,
     val measurementSpacerState: String,
 )
+
+fun SaveCylinderValveMeasurementState.toCylinderValveMeasurementState(): CylinderValveMeasurementState {
+    val cylinderValveMeasurementState = CylinderValveMeasurementState()
+    cylinderValveMeasurementState.measurementGapState = mutableStateOf(this.measurementGapState)
+    cylinderValveMeasurementState.measurementSpacerState =
+        mutableStateOf(this.measurementSpacerState)
+    return cylinderValveMeasurementState
+}
 
 fun SaveEngineMeasurementParam.toMeasurementEngineEntity(): SettingsEngineParamsEntity {
 

@@ -1,18 +1,16 @@
 package com.example.thermalgapcalc_compose.data.storage
 
 import com.example.thermalgapcalc_compose.data.db.AppDataBase
-import com.example.thermalgapcalc_compose.data.db.entity.CylindersListEntity
-import com.example.thermalgapcalc_compose.domain.model.EngineMeasurementModel
-import com.example.thermalgapcalc_compose.domain.model.SaveEngineMeasurementParam
-import com.example.thermalgapcalc_compose.domain.model.getGsonEngineList
-import com.example.thermalgapcalc_compose.domain.model.toMeasurementEngineEntity
+import com.example.thermalgapcalc_compose.data.db.entity.CylindersMeasurementsListEntity
+import com.example.thermalgapcalc_compose.domain.model.*
+import com.google.gson.Gson
 
 
 class LocalEngineMeasurementStorage(appDataBase: AppDataBase) :
     EngineMeasurementStorage {
     private val measurementEngineDao = appDataBase.measurementEngineDao()
     private val cylindersListDao = appDataBase.CylindersListDao()
-    override fun getList(): List<EngineMeasurementModel> {
+    override fun getSettingsEngineList(): List<EngineMeasurementModel> {
         val entityList = measurementEngineDao.getAll()
         val modelList: MutableList<EngineMeasurementModel> = mutableListOf()
         entityList.forEach {
@@ -37,10 +35,16 @@ class LocalEngineMeasurementStorage(appDataBase: AppDataBase) :
         val gsonEngineList = saveEngineMeasurementParam.getGsonEngineList()
         measurementEngineDao.save(measurementParam)
         cylindersListDao.save(
-            CylindersListEntity(
+            CylindersMeasurementsListEntity(
                 measurementParam.IdCylindersListJson,
                 gsonEngineList
             )
         )
+    }
+
+    override fun getMeasurementList(id: String): List<SaveCylindersMeasurements> {
+        val gson = Gson()
+        val json = cylindersListDao.getById(id).listJson
+        return gson.fromJson(json, Array<SaveCylindersMeasurements>::class.java).asList()
     }
 }

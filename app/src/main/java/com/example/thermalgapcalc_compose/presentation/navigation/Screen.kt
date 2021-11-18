@@ -1,8 +1,10 @@
 package com.example.thermalgapcalc_compose.presentation.navigation
 
-const val HISTORY_ROUTE= "history_rout"
-const val ADD_ROUTE= "add_rout"
-const val SETTINGS_ROUTE= "settings_rout"
+const val DETAIL_ARGUMENT_KEY = "id"
+
+const val HISTORY_ROUTE = "history_rout"
+const val ADD_ROUTE = "add_rout"
+const val SETTINGS_ROUTE = "settings_rout"
 const val ROOT_GRAPH_ROUTE = "root"
 
 sealed class Screen(val route: String) {
@@ -11,5 +13,10 @@ sealed class Screen(val route: String) {
     object ValveSettings : Screen("valve_settings_screen")
     object AddingMeasurementsCylinder : Screen("adding_cylinder_screen")
     object MeasurementResult : Screen("measurement_result_screen")
-    object Settings: Screen("settings_screen")
+    object Settings : Screen("settings_screen")
+    object SavedDetails : Screen("saved_details_screen?id={id}") {
+        fun passId(id: String): String {
+            return "saved_details_screen?id=$id"
+        }
+    }
 }

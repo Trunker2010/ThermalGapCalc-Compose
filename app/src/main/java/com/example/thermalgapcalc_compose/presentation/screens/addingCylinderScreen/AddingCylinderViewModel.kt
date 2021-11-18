@@ -1,5 +1,6 @@
 package com.example.thermalgapcalc_compose.presentation.screens.addingCylinderScreen
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,10 +16,18 @@ import javax.inject.Inject
 class AddingCylinderViewModel @Inject constructor(
     val engineSettingsConfig: EngineSettingsConfig,
 ) : ViewModel(), EventHandler<AddingCylinderEvents> {
-
+    val cylinderState = CylinderState(
+        engineSettingsConfig.inValveQuantity.value,
+        engineSettingsConfig.exValveQuantity.value
+    )
     private val _addingCylinderState =
-        MutableLiveData<AddingCylinderState>(AddingCylinderState.Display(cylinderState = CylinderState(engineSettingsConfig.inValveQuantity.value,engineSettingsConfig.exValveQuantity.value)))
+        MutableLiveData<AddingCylinderState>(
+            AddingCylinderState.Display(
+                cylinderState = cylinderState
+            )
+        )
     val addingCylinderState: LiveData<AddingCylinderState> = _addingCylinderState
+
     override fun obtainEvent(event: AddingCylinderEvents) {
         when (val state = _addingCylinderState.value) {
             is AddingCylinderState.Display -> {
@@ -41,10 +50,9 @@ class AddingCylinderViewModel @Inject constructor(
             is AddingCylinderEvents.InMeasurementGapChange -> {
                 event.state.value = event.inGap
             }
-            is AddingCylinderEvents.AddCylinderClick,
+            is AddingCylinderEvents.AddCylinderClick
             -> {
                 engineSettingsConfig.cylindersList.add(state.cylinderState)
-
             }
         }
     }

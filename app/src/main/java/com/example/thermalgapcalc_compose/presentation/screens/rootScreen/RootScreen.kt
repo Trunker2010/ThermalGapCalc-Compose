@@ -38,6 +38,7 @@ object RootScreen {
                 }
                 is RootScreenState.Display -> {
                     SavedMeasurementsHolder(
+                        navController,
                         modifier = Modifier,
                         list = state.measurementsList
                     )
