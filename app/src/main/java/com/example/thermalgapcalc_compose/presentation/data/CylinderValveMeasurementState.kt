@@ -1,8 +1,8 @@
 package com.example.thermalgapcalc_compose.presentation.data
 
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.MutableState
 
- class CylinderValveMeasurementState {
-    var measurementGapState = mutableStateOf("0.0")
-    var measurementSpacerState = mutableStateOf("0.0")
-}
+data class CylinderValveMeasurementState(
+    var measurementGapState: MutableState<String>,
+    var measurementSpacerState: MutableState<String>
+)

@@ -6,14 +6,16 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.example.thermalgapcalc_compose.R
+import com.example.thermalgapcalc_compose.presentation.navigation.Screen
 import com.example.thermalgapcalc_compose.presentation.screens.addingCylinderScreen.model.AddingCylinderEvents
 import com.example.thermalgapcalc_compose.presentation.screens.addingCylinderScreen.view.AddingCylinderCard
 import com.example.thermalgapcalc_compose.presentation.ui.CustomTextButton
 
 object AddingCylinderScreen {
     @Composable
-    fun AddingCylinderScreen(viewModel: AddingCylinderViewModel) {
+    fun AddingCylinderScreen(viewModel: AddingCylinderViewModel, navController: NavHostController) {
         Scaffold {
             Column {
                 AddingCylinderCard(viewModel = viewModel)

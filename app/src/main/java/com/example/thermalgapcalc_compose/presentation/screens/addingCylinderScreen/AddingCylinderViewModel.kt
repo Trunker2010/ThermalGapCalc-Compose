@@ -1,11 +1,12 @@
 package com.example.thermalgapcalc_compose.presentation.screens.addingCylinderScreen
 
-import android.util.Log
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.thermalgapcalc_compose.base.EventHandler
 import com.example.thermalgapcalc_compose.presentation.data.CylinderState
+import com.example.thermalgapcalc_compose.presentation.data.CylinderValveMeasurementState
 import com.example.thermalgapcalc_compose.presentation.data.EngineSettingsConfig
 import com.example.thermalgapcalc_compose.presentation.screens.addingCylinderScreen.model.AddingCylinderEvents
 import com.example.thermalgapcalc_compose.presentation.screens.addingCylinderScreen.model.AddingCylinderState
@@ -16,14 +17,14 @@ import javax.inject.Inject
 class AddingCylinderViewModel @Inject constructor(
     val engineSettingsConfig: EngineSettingsConfig,
 ) : ViewModel(), EventHandler<AddingCylinderEvents> {
-    val cylinderState = CylinderState(
-        engineSettingsConfig.inValveQuantity.value,
-        engineSettingsConfig.exValveQuantity.value
-    )
+
     private val _addingCylinderState =
         MutableLiveData<AddingCylinderState>(
             AddingCylinderState.Display(
-                cylinderState = cylinderState
+                cylinderState = CylinderState(
+                    engineSettingsConfig.inValveQuantity.value,
+                    engineSettingsConfig.exValveQuantity.value
+                )
             )
         )
     val addingCylinderState: LiveData<AddingCylinderState> = _addingCylinderState
@@ -52,8 +53,32 @@ class AddingCylinderViewModel @Inject constructor(
             }
             is AddingCylinderEvents.AddCylinderClick
             -> {
-                engineSettingsConfig.cylindersList.add(state.cylinderState)
+                val cylinderState =
+                    copyCylinderState(state)
+
+                engineSettingsConfig.cylindersList.add(cylinderState)
             }
         }
+    }
+
+    private fun copyCylinderState(state: AddingCylinderState.Display): CylinderState {
+        val cylinderState =
+            CylinderState(state.cylinderState.inValveSize, state.cylinderState.exValveSize)
+
+        state.cylinderState.exValveList.forEachIndexed { index, cylinderValveMeasurementState ->
+            val exCylinderValveMeasurementState = CylinderValveMeasurementState(
+                mutableStateOf(cylinderValveMeasurementState.measurementGapState.value),
+                mutableStateOf(cylinderValveMeasurementState.measurementSpacerState.value)
+            )
+            cylinderState.exValveList[index] = exCylinderValveMeasurementState
+        }
+        state.cylinderState.inValveList.forEachIndexed { index, cylinderValveMeasurementState ->
+            val inCylinderValveMeasurementState = CylinderValveMeasurementState(
+                mutableStateOf(cylinderValveMeasurementState.measurementGapState.value),
+                mutableStateOf(cylinderValveMeasurementState.measurementSpacerState.value)
+            )
+            cylinderState.inValveList[index] = inCylinderValveMeasurementState
+        }
+        return cylinderState
     }
 }
