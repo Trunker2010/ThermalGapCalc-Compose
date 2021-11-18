@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class CylindersListEntity(
+data class CylindersMeasurementsListEntity(
     @PrimaryKey
     val id: String,
     val listJson: String

@@ -6,6 +6,7 @@ import com.example.thermalgapcalc_compose.data.db.AppDataBase
 import com.example.thermalgapcalc_compose.data.repository.EngineMeasurementRepositoryImpl
 import com.example.thermalgapcalc_compose.data.storage.LocalEngineMeasurementStorage
 import com.example.thermalgapcalc_compose.domain.useCas.GetEngineMeasurementListUseCase
+import com.example.thermalgapcalc_compose.domain.useCas.GetMeasurementDetailsListUseCase
 import com.example.thermalgapcalc_compose.domain.useCas.SaveEngineMeasurementUseCase
 import com.example.thermalgapcalc_compose.presentation.data.EngineSettingsConfig
 import dagger.Module
@@ -38,6 +39,11 @@ object AppModule {
     @Singleton
     fun provideGetEngineMeasurementList(engineMeasurementRepository: EngineMeasurementRepositoryImpl): GetEngineMeasurementListUseCase =
         GetEngineMeasurementListUseCase(engineMeasurementRepository)
+
+    @Provides
+    @Singleton
+    fun provideGetMeasurementDetailsListUseCase(engineMeasurementRepository: EngineMeasurementRepositoryImpl): GetMeasurementDetailsListUseCase =
+        GetMeasurementDetailsListUseCase(engineMeasurementRepository)
 
     @Provides
     @Singleton

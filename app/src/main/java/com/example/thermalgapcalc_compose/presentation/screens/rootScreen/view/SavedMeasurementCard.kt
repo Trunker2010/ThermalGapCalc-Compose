@@ -2,6 +2,7 @@ package com.example.thermalgapcalc_compose.presentation.screens.rootScreen.view
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,12 +17,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.example.thermalgapcalc_compose.R
+import com.example.thermalgapcalc_compose.presentation.navigation.Screen
 import com.example.thermalgapcalc_compose.ui.theme.ThermalGapCalcComposeTheme
 
 
 @Composable
 fun SavedMeasurementCard(
+    navController: NavHostController,
     modifier: Modifier,
     data: String,
     exValveSize: Int,
@@ -35,7 +39,9 @@ fun SavedMeasurementCard(
     Card(
         modifier = modifier
             .fillMaxWidth()
-            .padding(vertical = 2.dp, horizontal = 8.dp), shape = RoundedCornerShape(18.dp),
+            .padding(vertical = 2.dp, horizontal = 8.dp)
+            .clickable {navController.navigate(Screen.SavedDetails.passId(IdCylindersListJson))  }
+        , shape = RoundedCornerShape(18.dp),
         elevation = 4.dp
     ) {
         Column(modifier = Modifier.padding(8.dp)) {
@@ -84,15 +90,15 @@ fun SavedMeasurementCard(
 @Preview(showBackground = true)
 fun PreviewSaSavedMeasurementCard() {
     ThermalGapCalcComposeTheme(darkTheme = true) {
-        SavedMeasurementCard(
-            Modifier, "20.07.2021 17:34:52",
-            2,
-            1,
-            0.18f,
-            0.03f,
-            0.15f,
-            0.03f,
-            "0000"
-        )
+//        SavedMeasurementCard(
+//            Modifier, "20.07.2021 17:34:52",
+//            2,
+//            1,
+//            0.18f,
+//            0.03f,
+//            0.15f,
+//            0.03f,
+//            "0000"
+//        )
     }
 }

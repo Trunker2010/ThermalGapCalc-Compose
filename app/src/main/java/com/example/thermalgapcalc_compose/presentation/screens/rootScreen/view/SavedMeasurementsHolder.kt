@@ -12,6 +12,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.example.thermalgapcalc_compose.domain.model.EngineMeasurementModel
 import java.time.Instant
 import java.time.LocalDateTime
@@ -22,7 +23,7 @@ import java.time.format.DateTimeFormatter
 @ExperimentalFoundationApi
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun SavedMeasurementsHolder(modifier: Modifier, list: List<EngineMeasurementModel>) {
+fun SavedMeasurementsHolder(navController: NavHostController,modifier: Modifier, list: List<EngineMeasurementModel>) {
     val groupFormatter = DateTimeFormatter.ofPattern("dd.MM.yy")
     val formatter = DateTimeFormatter.ofPattern("HH:mm:ss")
 
@@ -62,7 +63,8 @@ fun SavedMeasurementsHolder(modifier: Modifier, list: List<EngineMeasurementMode
                         exGapTolerance = it.exGapTolerance.toFloat(),
                         inGapNormal = it.inGapNormal.toFloat(),
                         inGapTolerance = it.inGapTolerance.toFloat(),
-                        IdCylindersListJson = it.IdCylindersList
+                        IdCylindersListJson = it.IdCylindersList,
+                        navController = navController
                     )
                 }
             }
