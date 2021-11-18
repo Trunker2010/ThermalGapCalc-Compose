@@ -18,14 +18,16 @@ object NumericTextField {
         modifier: Modifier = Modifier,
         onParamsChange: (MutableState<String>, String) -> Unit,
     ) {
+        val text = remember {
+            inputParam
+        }
         OutlinedTextField(
-
             modifier = modifier,
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             singleLine = true,
             label = { Text(text = stringResource(id = labelRes)) },
-            value = inputParam.value,
+            value = text.value,
             shape = RoundedCornerShape(18.dp),
-            onValueChange = { onParamsChange(inputParam, it) })
+            onValueChange = { onParamsChange(text, it) })
     }
 }

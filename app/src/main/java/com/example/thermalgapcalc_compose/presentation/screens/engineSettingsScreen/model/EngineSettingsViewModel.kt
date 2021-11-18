@@ -30,7 +30,26 @@ class EngineSettingsViewModel @Inject constructor(
     ) {
         when (settingsEvents) {
             is EngineSettingsEvents.InToleranceChange -> {
-                settingsEvents.state.value = settingsEvents.inTolerance
+
+                if (settingsEvents.inTolerance.isEmpty()) {
+                    settingsEvents.state.value = "0"
+                }
+                else if (settingsEvents.inTolerance.startsWith(",") || settingsEvents.inTolerance.startsWith(".")
+                ) {
+                    settingsEvents.state.value = "0,"
+                }
+                else if (settingsEvents.state.value == "0" && settingsEvents.inTolerance.startsWith("00")
+                ) {
+                    settingsEvents.state.value = "0"
+                }
+                else if (settingsEvents.state.value.contains(",")||settingsEvents.state.value.contains(".")){
+
+                }
+                else {
+                    settingsEvents.state.value = settingsEvents.inTolerance
+                }
+
+
             }
             is EngineSettingsEvents.BaseInGapChange -> {
                 settingsEvents.state.value = settingsEvents.gap
