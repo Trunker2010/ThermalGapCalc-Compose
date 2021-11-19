@@ -37,7 +37,6 @@ object NumericTextField {
             }
             )
     }
-
     private fun parseNumeric(text: String): String {
         var digCount = 0
         var parsed = text.replace(",", ".")
