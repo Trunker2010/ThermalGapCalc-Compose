@@ -1,5 +1,7 @@
 package com.example.thermalgapcalc_compose.presentation.screens.engineSettingsScreen.model
 
+import android.util.Log
+import androidx.core.text.isDigitsOnly
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

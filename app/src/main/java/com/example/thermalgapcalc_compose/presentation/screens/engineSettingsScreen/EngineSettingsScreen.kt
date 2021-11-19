@@ -7,6 +7,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.key.onKeyEvent
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.thermalgapcalc_compose.R
@@ -26,13 +28,16 @@ object EngineSettingsScreen {
         val viewState =
             viewModel.engineViewState.observeAsState()
         val scrollState = rememberScrollState()
+
         when (val state = viewState.value) {
             is EngineViewState.ViewStateInitial -> {
+
                 Column(
                     modifier = Modifier
                         .verticalScroll(scrollState)
                         .padding(bottom = 80.dp)
                         .fillMaxSize()
+
                 ) {
                     GapsSettings(state,
                         onExGapNormalChange = { state, str ->
