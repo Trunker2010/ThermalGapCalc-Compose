@@ -6,9 +6,7 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.*
 import androidx.navigation.compose.composable
-import com.example.thermalgapcalc_compose.presentation.navigation.DETAIL_ARGUMENT_KEY
-import com.example.thermalgapcalc_compose.presentation.navigation.HISTORY_ROUTE
-import com.example.thermalgapcalc_compose.presentation.navigation.Screen
+import com.example.thermalgapcalc_compose.presentation.navigation.*
 import com.example.thermalgapcalc_compose.presentation.screens.rootScreen.RootScreen
 import com.example.thermalgapcalc_compose.presentation.screens.rootScreen.model.RootScreenViewModelViewModel
 import com.example.thermalgapcalc_compose.presentation.screens.savedDetailsScreen.SavedDetails
@@ -29,15 +27,24 @@ fun NavGraphBuilder.historyNavGraph(navController: NavHostController) {
         composable(
             route = Screen.SavedDetails.route,
             arguments = listOf(
-                navArgument(DETAIL_ARGUMENT_KEY) {
+                navArgument(DETAIL_ID_KEY) {
                     type = NavType.StringType
                     defaultValue = "id"
                 }
             )
         ) {
-            val id = it.arguments?.getString(DETAIL_ARGUMENT_KEY)
             val savedDetailsViewModel = hiltViewModel<SavedDetailsViewModel>()
-            SavedDetails(navController = navController, viewModel = savedDetailsViewModel,id!!)
+
+            it.arguments?.apply {
+                val id = getString(DETAIL_ID_KEY)
+                val exGapNormal: Float = getFloat(DETAIL_EX_GAP_NORMAL_KEY)
+                val exGapTolerance: Float = getFloat(DETAIL_EX_GAP_TOLERANCE_KEY)
+                val inGapNormal: Float = getFloat(DETAIL_IN_GAP_NORMAL_KEY)
+                val inGapTolerance: Float = getFloat(DETAIL_IN_GAP_TOLERANCE_KEY)
+                SavedDetails(navController = navController, viewModel = savedDetailsViewModel, id!!,exGapNormal,exGapTolerance,inGapNormal,inGapTolerance)
+            }
+
+
         }
     }
 }
