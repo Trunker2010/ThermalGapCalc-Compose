@@ -3,26 +3,28 @@ package com.example.thermalgapcalc_compose.presentation.screens.resultScreen.vie
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
-import com.example.thermalgapcalc_compose.presentation.screens.resultScreen.model.ResultState
-import com.example.thermalgapcalc_compose.presentation.screens.resultScreen.model.ResultViewModel
+import com.example.thermalgapcalc_compose.presentation.data.CylinderState
 
 @Composable
-fun ResultCardHolder(viewModel: ResultViewModel) {
-    when (val engineViewState = viewModel.resultState.value) {
-        is ResultState.Display -> {
-            LazyColumn {
-                itemsIndexed(engineViewState.engineSettingsConfig.cylindersList,
-                    ) { index, cylinderState ->
-                    CardResult(
-                        cylinderNumber = index,
-                        cylinderState = cylinderState,
-                        inNormal = engineViewState.engineSettingsConfig.inGapNormal.value.toFloat(),
-                        exNormal = engineViewState.engineSettingsConfig.exGapNormal.value.toFloat(),
-                        inTolerance = engineViewState.engineSettingsConfig.inGapTolerance.value.toFloat(),
-                        exTolerance = engineViewState.engineSettingsConfig.inGapTolerance.value.toFloat(),
-                    )
-                }
-            }
+fun ResultCardHolder(
+    cylinderStateList: MutableList<CylinderState>,
+    inNormal: Float,
+    exNormal: Float,
+    exTolerance: Float,
+    inTolerance: Float
+) {
+    LazyColumn {
+        itemsIndexed(
+            cylinderStateList
+        ) { index, cylinderState ->
+            CardResult(
+                cylinderNumber = index,
+                cylinderState = cylinderState,
+                inNormal = inNormal,
+                exNormal = exNormal,
+                inTolerance = inTolerance,
+                exTolerance = exTolerance,
+            )
         }
     }
 }
