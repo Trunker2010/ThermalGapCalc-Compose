@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.thermalgapcalc_compose.base.EventHandler
+import com.example.thermalgapcalc_compose.domain.model.SaveCylindersMeasurements
 import com.example.thermalgapcalc_compose.domain.model.toCylinderValveMeasurementState
 import com.example.thermalgapcalc_compose.domain.useCas.GetMeasurementDetailsListUseCase
 import com.example.thermalgapcalc_compose.presentation.data.CylinderState
@@ -88,6 +89,4 @@ class SavedDetailsViewModel @Inject constructor(val getMeasurementDetailsListUse
             }
         }
     }
-
-
 }

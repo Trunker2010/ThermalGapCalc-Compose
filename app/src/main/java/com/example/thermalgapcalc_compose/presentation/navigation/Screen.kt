@@ -11,6 +11,7 @@ const val ADD_ROUTE = "add_rout"
 const val SETTINGS_ROUTE = "settings_rout"
 const val ROOT_GRAPH_ROUTE = "root"
 
+
 sealed class Screen(val route: String) {
     object History : Screen("history_screen")
     object EngineSettings : Screen("engine_settings_screen")
@@ -21,13 +22,26 @@ sealed class Screen(val route: String) {
     object SavedDetails :
         Screen("saved_details_screen?id={$DETAIL_ID_KEY}&exGapNormal={$DETAIL_EX_GAP_NORMAL_KEY}&exGapTolerance={$DETAIL_EX_GAP_TOLERANCE_KEY}&inGapNormal={$DETAIL_IN_GAP_NORMAL_KEY}&inGapTolerance={$DETAIL_IN_GAP_TOLERANCE_KEY}") {
         fun passParams(
-            id: String,
+            measurementsListId: String,
             exGapNormal: Float,
             exGapTolerance: Float,
             inGapNormal: Float,
             inGapTolerance: Float,
         ): String {
-            return "saved_details_screen?id=$id&exGapNormal=$exGapNormal&exGapTolerance=$exGapTolerance&inGapNormal=$inGapNormal&inGapTolerance=$inGapTolerance"
+            return "saved_details_screen?id=$measurementsListId&exGapNormal=$exGapNormal&exGapTolerance=$exGapTolerance&inGapNormal=$inGapNormal&inGapTolerance=$inGapTolerance"
+        }
+    }
+
+    object SavedResult :
+        Screen("saved_result_screen?id={$DETAIL_ID_KEY}&exGapNormal={$DETAIL_EX_GAP_NORMAL_KEY}&exGapTolerance={$DETAIL_EX_GAP_TOLERANCE_KEY}&inGapNormal={$DETAIL_IN_GAP_NORMAL_KEY}&inGapTolerance={$DETAIL_IN_GAP_TOLERANCE_KEY}") {
+        fun passParams(
+            measurementsListId: String,
+            exGapNormal: Float,
+            exGapTolerance: Float,
+            inGapNormal: Float,
+            inGapTolerance: Float,
+        ): String {
+            return "saved_result_screen?id=$measurementsListId&exGapNormal=$exGapNormal&exGapTolerance=$exGapTolerance&inGapNormal=$inGapNormal&inGapTolerance=$inGapTolerance"
         }
     }
 }

@@ -43,7 +43,7 @@ fun SavedMeasurementCard(
             .clickable {
                 navController.navigate(
                     Screen.SavedDetails.passParams(
-                        id = IdCylindersListJson,
+                        measurementsListId = IdCylindersListJson,
                         exGapNormal = exGapNormal,
                         exGapTolerance = exGapTolerance,
                         inGapNormal = inGapNormal,
