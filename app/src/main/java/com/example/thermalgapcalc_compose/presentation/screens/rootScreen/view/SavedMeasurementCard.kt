@@ -40,8 +40,17 @@ fun SavedMeasurementCard(
         modifier = modifier
             .fillMaxWidth()
             .padding(vertical = 2.dp, horizontal = 8.dp)
-            .clickable {navController.navigate(Screen.SavedDetails.passId(IdCylindersListJson))  }
-        , shape = RoundedCornerShape(18.dp),
+            .clickable {
+                navController.navigate(
+                    Screen.SavedDetails.passParams(
+                        measurementsListId = IdCylindersListJson,
+                        exGapNormal = exGapNormal,
+                        exGapTolerance = exGapTolerance,
+                        inGapNormal = inGapNormal,
+                        inGapTolerance = inGapTolerance
+                    )
+                )
+            }, shape = RoundedCornerShape(18.dp),
         elevation = 4.dp
     ) {
         Column(modifier = Modifier.padding(8.dp)) {

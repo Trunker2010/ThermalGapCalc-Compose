@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
 import com.example.thermalgapcalc_compose.presentation.screens.resultScreen.model.ResultState
 import com.example.thermalgapcalc_compose.presentation.screens.resultScreen.model.ResultViewModel
-import com.example.thermalgapcalc_compose.presentation.screens.resultScreen.view.ResultCardHolder
+import com.example.thermalgapcalc_compose.presentation.ui.resultViews.ResultCardHolder
 
 object ResultScreen {
     @Composable
