@@ -23,6 +23,7 @@ class EngineSettingsViewModel @Inject constructor(
             is EngineViewState.ViewStateInitial -> {
                 reduce(event, currentViewState)
             }
+            null -> TODO()
         }
     }
 

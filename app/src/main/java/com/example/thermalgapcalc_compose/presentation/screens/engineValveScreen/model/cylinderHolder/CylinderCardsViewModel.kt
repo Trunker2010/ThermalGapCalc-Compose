@@ -29,6 +29,7 @@ class CylinderCardsViewModel @Inject constructor(
             is CylinderHolderState.Display -> {
                 reduce(state, event)
             }
+            null -> TODO()
         }
     }
 

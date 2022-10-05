@@ -33,7 +33,7 @@ object RootScreen {
 
         Column(Modifier.fillMaxSize()) {
             when (val state = viewState.value) {
-                is RootScreenState.Loading -> {
+                RootScreenState.Loading -> {
                     LoadingList(modifier = Modifier)
                 }
                 is RootScreenState.Display -> {
@@ -43,9 +43,13 @@ object RootScreen {
                         list = state.measurementsList
                     )
                 }
-                is RootScreenState.Empty -> {
+                RootScreenState.Empty -> {
                     ListEmpty(modifier = Modifier)
                 }
+                RootScreenState.Init -> {
+
+                }
+                null -> TODO()
             }
         }
     }

@@ -22,6 +22,7 @@ object ResultScreen {
                     cylinderStateList = engineViewState.engineSettingsConfig.cylindersList
                 )
             }
+            null -> TODO()
         }
     }
 }

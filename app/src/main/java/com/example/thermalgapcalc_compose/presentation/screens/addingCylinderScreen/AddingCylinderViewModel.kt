@@ -34,6 +34,7 @@ class AddingCylinderViewModel @Inject constructor(
             is AddingCylinderState.Display -> {
                 reduce(state = state, event)
             }
+            null -> TODO()
         }
     }
 
