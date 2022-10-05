@@ -22,6 +22,10 @@ class SavedCalcViewModel @Inject constructor(val getMeasurementDetailsListUseCas
            is SavedCalcState.Init -> {
                 reduce(state, event)
             }
+            is SavedCalcState.Display -> TODO()
+            SavedCalcState.Empty -> TODO()
+            SavedCalcState.Loading -> TODO()
+            null -> TODO()
         }
     }
 

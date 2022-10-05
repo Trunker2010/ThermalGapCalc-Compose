@@ -34,6 +34,8 @@ class SavedDetailsViewModel @Inject constructor(val getMeasurementDetailsListUse
             is SavedDetailsScreenState.Display -> {
 
             }
+            SavedDetailsScreenState.Empty -> TODO()
+            null -> TODO()
         }
     }
 

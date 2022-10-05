@@ -1,4 +1,4 @@
-package com.example.thermalgapcalc_compose.presentation.screens
+package com.example.thermalgapcalc_compose.presentation.screens.settingsScreen
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize

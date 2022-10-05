@@ -7,7 +7,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.example.thermalgapcalc_compose.presentation.navigation.SETTINGS_ROUTE
 import com.example.thermalgapcalc_compose.presentation.navigation.Screen
-import com.example.thermalgapcalc_compose.presentation.screens.SettingsScreen
+import com.example.thermalgapcalc_compose.presentation.screens.settingsScreen.SettingsScreen
 
 fun NavGraphBuilder.settingsNavGraph(navController: NavHostController) {
     navigation(startDestination = Screen.Settings.route, route = SETTINGS_ROUTE) {

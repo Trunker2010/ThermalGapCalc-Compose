@@ -48,6 +48,7 @@ class RootScreenViewModelViewModel @Inject constructor(
             is RootScreenState.Init -> {
                 reduce(state, event)
             }
+            null -> TODO()
         }
     }
 
@@ -56,6 +57,7 @@ class RootScreenViewModelViewModel @Inject constructor(
             is RootScreenEvent.LoadMeasurementList -> {
                 getList()
             }
+            is RootScreenEvent.ShowDetails -> TODO()
         }
     }
 
@@ -64,6 +66,7 @@ class RootScreenViewModelViewModel @Inject constructor(
             is RootScreenEvent.LoadMeasurementList -> {
                 getList()
             }
+            is RootScreenEvent.ShowDetails -> TODO()
         }
     }
 
@@ -76,6 +79,7 @@ class RootScreenViewModelViewModel @Inject constructor(
             is RootScreenEvent.LoadMeasurementList -> {
                 getList()
             }
+            is RootScreenEvent.ShowDetails -> TODO()
         }
     }
 }
